@@ -18,6 +18,10 @@
 
 > **DICOM-Trace** is a research-grade biomedical image security system built on top of the **SentinelMark** cryptographic engine. It applies **Behavior-Entangled Watermarking (BEW)** to DICOM-format medical images — MRI, CT scans, X-rays, and ultrasounds — providing unforgeable provenance, tamper evidence, and forensic audit trails that meet HIPAA §164.312(b), FDA 21 CFR Part 11, and IHE ATNA compliance requirements.
 
+<div align="center">
+  <img src="assets/medical_breathing.svg" alt="DICOM-Trace Medical Telemetry Animation" width="800" />
+</div>
+
 ---
 
 ## 🏥 Why Medical Image Security?
@@ -246,9 +250,3 @@ python benchmarks/attacks/sim_volumetric_replay.py
 ## ⚖️ License
 
 This project is open-sourced under the **Apache License 2.0**. See the [LICENSE](LICENSE) file for complete details and patent grant conditions.
-
-<br/>
-
-<div align="center">
-  <img src="assets/medical_breathing.svg" alt="DICOM-Trace Medical Telemetry Animation" width="800" />
-</div>
