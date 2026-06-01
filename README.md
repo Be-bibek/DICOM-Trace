@@ -250,5 +250,5 @@ This project is open-sourced under the **Apache License 2.0**. See the [LICENSE]
 <br/>
 
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:000000,40:023e8a,80:0077b6,100:00b4d8&height=180&section=footer&text=Securing%20Medical%20Images%20With%20Behavioral%20Entropy&fontSize=24&fontColor=ffffff&animation=fadeIn&fontAlignY=65" alt="Footer Wave" />
+  <img src="assets/medical_breathing.svg" alt="DICOM-Trace Medical Telemetry Animation" width="800" />
 </div>

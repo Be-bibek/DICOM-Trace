@@ -1,0 +1,252 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 250" width="100%" height="100%">
+  <defs>
+    <!-- Grid Pattern for background -->
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#0f172a" stroke-width="0.75" />
+    </pattern>
+
+    <!-- Card Background Gradient -->
+    <linearGradient id="cardBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#020617" />
+      <stop offset="100%" stop-color="#0b1329" />
+    </linearGradient>
+
+    <!-- Card Border Gradient -->
+    <linearGradient id="cardBorder" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="50%" stop-color="#00b4d8" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+
+    <!-- Lungs Fill Gradient -->
+    <linearGradient id="lungGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00b4d8" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#0d9488" stop-opacity="0.03" />
+    </linearGradient>
+
+    <!-- Glowing effect filter -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Heart Glow filter -->
+    <filter id="heartGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;display=swap');
+    
+    text {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    
+    .glow-text {
+      fill: #90e0ef;
+      text-shadow: 0 0 5px rgba(144, 224, 239, 0.6);
+    }
+    
+    .cyan-text {
+      fill: #00b4d8;
+      font-weight: 500;
+    }
+    
+    .dim-text {
+      fill: #475569;
+    }
+    
+    .ekg-bg {
+      stroke: #1e293b;
+      stroke-width: 1.5;
+      fill: none;
+      opacity: 0.35;
+    }
+    
+    .ekg-active {
+      stroke: #00b4d8;
+      stroke-width: 2.2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 180 820;
+      animation: ekg-sweep 3.5s linear infinite;
+      filter: url(#glow);
+    }
+    
+    .heart-pulse {
+      animation: heart-beat 0.83s infinite ease-in-out;
+      transform-origin: 685px 44px;
+    }
+    
+    .scanner-circle-1 {
+      transform-origin: 400px 115px;
+      animation: rotate-cw 25s linear infinite;
+    }
+    
+    .scanner-circle-2 {
+      transform-origin: 400px 115px;
+      animation: rotate-ccw 18s linear infinite;
+    }
+    
+    .breathing-lungs {
+      transform-origin: 400px 115px;
+      animation: breathe 5s ease-in-out infinite;
+    }
+
+    @keyframes ekg-sweep {
+      0% {
+        stroke-dashoffset: 1000;
+      }
+      100% {
+        stroke-dashoffset: 0;
+      }
+    }
+    
+    @keyframes heart-beat {
+      0%, 100% { transform: scale(1); }
+      30% { transform: scale(1.18); }
+      45% { transform: scale(0.95); }
+      60% { transform: scale(1.12); }
+      75% { transform: scale(1); }
+    }
+    
+    @keyframes rotate-cw {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    @keyframes rotate-ccw {
+      0% { transform: rotate(360deg); }
+      100% { transform: rotate(0deg); }
+    }
+    
+    @keyframes breathe {
+      0%, 100% {
+        transform: scale(0.94);
+        filter: drop-shadow(0 0 6px rgba(0, 180, 216, 0.25));
+      }
+      42% {
+        transform: scale(1.06);
+        filter: drop-shadow(0 0 16px rgba(0, 180, 216, 0.7));
+      }
+      50% {
+        transform: scale(1.06);
+        filter: drop-shadow(0 0 16px rgba(0, 180, 216, 0.7));
+      }
+      92% {
+        transform: scale(0.94);
+        filter: drop-shadow(0 0 6px rgba(0, 180, 216, 0.25));
+      }
+    }
+  </style>
+
+  <!-- Card Panel Frame -->
+  <rect x="10" y="10" width="780" height="230" rx="16" fill="url(#cardBg)" stroke="url(#cardBorder)" stroke-width="1.5" />
+  <rect x="15" y="15" width="770" height="220" rx="12" fill="url(#grid)" />
+
+  <!-- Corner Crosshairs -->
+  <path d="M 25 40 L 25 25 L 40 25" fill="none" stroke="#00b4d8" stroke-width="1.5" opacity="0.6" />
+  <path d="M 775 40 L 775 25 L 760 25" fill="none" stroke="#00b4d8" stroke-width="1.5" opacity="0.6" />
+  <path d="M 25 210 L 25 225 L 40 225" fill="none" stroke="#00b4d8" stroke-width="1.5" opacity="0.6" />
+  <path d="M 775 210 L 775 225 L 760 225" fill="none" stroke="#00b4d8" stroke-width="1.5" opacity="0.6" />
+
+  <!-- Background EKG Grid Lines (Static) -->
+  <path d="M 50 180 L 150 180 L 160 172 Q 165 168, 170 180 L 180 180 L 185 188 L 192 120 L 199 210 L 205 174 L 210 180 Q 220 168, 230 180 L 350 180 L 360 172 Q 365 168, 370 180 L 380 180 L 385 188 L 392 120 L 399 210 L 405 174 L 410 180 Q 420 168, 430 180 L 550 180 L 560 172 Q 565 168, 570 180 L 580 180 L 585 188 L 592 120 L 599 210 L 605 174 L 610 180 Q 620 168, 630 180 L 750 180" class="ekg-bg" />
+
+  <!-- Active Scanning EKG Sweep -->
+  <path d="M 50 180 L 150 180 L 160 172 Q 165 168, 170 180 L 180 180 L 185 188 L 192 120 L 199 210 L 205 174 L 210 180 Q 220 168, 230 180 L 350 180 L 360 172 Q 365 168, 370 180 L 380 180 L 385 188 L 392 120 L 399 210 L 405 174 L 410 180 Q 420 168, 430 180 L 550 180 L 560 172 Q 565 168, 570 180 L 580 180 L 585 188 L 592 120 L 599 210 L 605 174 L 610 180 Q 620 168, 630 180 L 750 180" class="ekg-active" />
+
+  <!-- Heart Silhouette Shadow Behind Lungs -->
+  <path d="M 400 120 C 385 120, 375 130, 375 142 C 375 155, 400 170, 400 170 C 400 170, 425 155, 425 142 C 425 130, 415 120, 400 120 Z" fill="#ef4444" opacity="0.12" filter="url(#glow)" />
+
+  <!-- Concentric Scanner Rings (Targeting) -->
+  <circle cx="400" cy="115" r="90" fill="none" stroke="#00b4d8" stroke-width="1.2" stroke-dasharray="10, 15" class="scanner-circle-1" opacity="0.22" />
+  <circle cx="400" cy="115" r="110" fill="none" stroke="#06b6d4" stroke-width="1" stroke-dasharray="4, 10" class="scanner-circle-2" opacity="0.14" />
+  <circle cx="400" cy="115" r="130" fill="none" stroke="#1e293b" stroke-width="0.75" opacity="0.4" />
+
+  <!-- Floating Behavioral Entropy Particles (SMIL) -->
+  <circle cx="372" cy="150" r="2.5" fill="#00b4d8">
+    <animate attributeName="cy" values="150;70" dur="4.8s" repeatCount="indefinite" begin="0s" />
+    <animate attributeName="cx" values="372;360;368" dur="4.8s" repeatCount="indefinite" begin="0s" />
+    <animate attributeName="opacity" values="0;0.7;0" dur="4.8s" repeatCount="indefinite" begin="0s" />
+  </circle>
+  <circle cx="428" cy="150" r="3" fill="#90e0ef">
+    <animate attributeName="cy" values="150;65" dur="5.5s" repeatCount="indefinite" begin="1.2s" />
+    <animate attributeName="cx" values="428;442;435" dur="5.5s" repeatCount="indefinite" begin="1.2s" />
+    <animate attributeName="opacity" values="0;0.8;0" dur="5.5s" repeatCount="indefinite" begin="1.2s" />
+  </circle>
+  <circle cx="390" cy="135" r="2" fill="#06b6d4">
+    <animate attributeName="cy" values="135;55" dur="4.2s" repeatCount="indefinite" begin="2.5s" />
+    <animate attributeName="cx" values="390;378;392" dur="4.2s" repeatCount="indefinite" begin="2.5s" />
+    <animate attributeName="opacity" values="0;0.75;0" dur="4.2s" repeatCount="indefinite" begin="2.5s" />
+  </circle>
+  <circle cx="410" cy="140" r="3.2" fill="#00b4d8">
+    <animate attributeName="cy" values="140;60" dur="5.2s" repeatCount="indefinite" begin="0.7s" />
+    <animate attributeName="cx" values="410;422;412" dur="5.2s" repeatCount="indefinite" begin="0.7s" />
+    <animate attributeName="opacity" values="0;0.65;0" dur="5.2s" repeatCount="indefinite" begin="0.7s" />
+  </circle>
+
+  <!-- Interactive Scan Sweep Laser Line -->
+  <line x1="270" y1="50" x2="530" y2="50" stroke="#00b4d8" stroke-width="1.5" opacity="0.6" filter="url(#glow)">
+    <animate attributeName="y1" values="50;185;50" dur="5s" repeatCount="indefinite" />
+    <animate attributeName="y2" values="50;185;50" dur="5s" repeatCount="indefinite" />
+    <animate attributeName="opacity" values="0.1;0.75;0.1" dur="5s" repeatCount="indefinite" />
+  </line>
+
+  <!-- Breathing Lungs Container (Animated Lungs) -->
+  <g class="breathing-lungs">
+    <!-- Left Lobe -->
+    <path d="M 385 70 C 370 52, 332 46, 310 65 C 290 85, 280 140, 290 180 C 300 200, 350 200, 375 185 C 385 175, 385 100, 385 70 Z" 
+          fill="url(#lungGrad)" stroke="#00b4d8" stroke-width="2" stroke-linejoin="round" />
+          
+    <!-- Left Bronchioles (Inner branches) -->
+    <path d="M 383 85 Q 365 100, 345 110 M 365 100 Q 345 95, 330 100 M 355 105 Q 345 125, 335 140 M 345 125 Q 325 130, 315 145 M 373 120 Q 363 145, 358 170 M 363 145 Q 348 160, 343 175" 
+          stroke="#90e0ef" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.65" />
+
+    <!-- Right Lobe -->
+    <path d="M 415 70 C 430 52, 468 46, 490 65 C 510 85, 520 140, 510 180 C 500 200, 450 200, 425 185 C 415 175, 415 100, 415 70 Z" 
+          fill="url(#lungGrad)" stroke="#00b4d8" stroke-width="2" stroke-linejoin="round" />
+          
+    <!-- Right Bronchioles (Inner branches) -->
+    <path d="M 417 85 Q 435 100, 455 110 M 435 100 Q 455 95, 470 100 M 445 105 Q 455 125, 465 140 M 455 125 Q 475 130, 485 145 M 427 120 Q 437 145, 442 170 M 437 145 Q 452 160, 457 175" 
+          stroke="#90e0ef" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.65" />
+
+    <!-- Trachea (Windpipe) -->
+    <path d="M 400 45 L 400 80 Q 400 85, 386 92 M 400 80 Q 400 85, 414 92" 
+          stroke="#00b4d8" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.75" />
+  </g>
+
+  <!-- Left Telemetry Panel -->
+  <text x="35" y="48" class="cyan-text" font-size="12">DICOM-TRACE // BEW_ENGINE</text>
+  <text x="35" y="65" class="dim-text" font-size="9">SYS_STATUS: </text>
+  <text x="110" y="65" fill="#22c55e" font-size="9" font-weight="bold">ONLINE</text>
+  <text x="35" y="78" class="dim-text" font-size="9">TRUST_LEVEL: </text>
+  <text x="115" y="78" fill="#00b4d8" font-size="9" font-weight="bold">100.0% SECURE</text>
+  <text x="35" y="91" class="dim-text" font-size="9">DEVICE_ID: </text>
+  <text x="100" y="91" class="glow-text" font-size="9">MRI_SCANNER_3T_G2</text>
+
+  <!-- Right Telemetry Panel -->
+  <!-- Heart Icon (Pulsing) -->
+  <g class="heart-pulse">
+    <path d="M 685 42 C 685 42, 682 38, 678 38 C 673 38, 670 41, 670 45 C 670 51, 678 56, 685 60 C 692 56, 700 51, 700 45 C 700 41, 697 38, 692 38 C 688 38, 685 42, 685 42 Z" fill="#ef4444" filter="url(#heartGlow)" />
+  </g>
+  <text x="708" y="47" class="cyan-text" font-size="12">72 BPM</text>
+  <text x="655" y="65" class="dim-text" font-size="9" text-anchor="end">PATIENT_STATE: </text>
+  <text x="765" y="65" fill="#22c55e" font-size="9" font-weight="bold" text-anchor="end">PHYSIOLOGICAL_OK</text>
+  <text x="655" y="78" class="dim-text" font-size="9" text-anchor="end">RESPIRATORY: </text>
+  <text x="765" y="78" class="glow-text" font-size="9" text-anchor="end">12 Br/Min (Breathing)</text>
+  <text x="655" y="91" class="dim-text" font-size="9" text-anchor="end">WATERMARK: </text>
+  <text x="765" y="91" fill="#eab308" font-size="9" font-weight="bold" text-anchor="end">EMBEDDED (BEW)</text>
+
+  <!-- Bottom Centered Status Bar -->
+  <text x="400" y="222" fill="#475569" font-size="8" text-anchor="middle" letter-spacing="1.5">CRYPTOGRAPHIC INTEGRITY GUARANTEE • ISO 12052 COMPLIANT • HIPAA §164.312(B)</text>
+</svg>
