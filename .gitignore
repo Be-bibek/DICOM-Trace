@@ -1,0 +1,36 @@
+# Rust build artifacts
+core-rs/target/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+
+# SQLite databases
+*.db
+*.db-shm
+*.db-wal
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Benchmark results (optional, keep if you want reproducible outputs)
+# verify-py/benchmarks/results/
+
+# Compiled assets
+*.pyc
+*.pyo

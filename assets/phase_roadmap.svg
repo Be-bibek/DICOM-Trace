@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 320" width="900" height="320" font-family="JetBrains Mono, monospace">
+  <defs>
+    <linearGradient id="bg4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0f"/>
+      <stop offset="100%" style="stop-color:#0d1a2e"/>
+    </linearGradient>
+    <filter id="glow4">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="900" height="320" fill="url(#bg4)" rx="14"/>
+  <rect width="900" height="320" fill="none" stroke="#00b4d8" stroke-width="1.5" rx="14" opacity="0.4"/>
+
+  <text x="450" y="30" text-anchor="middle" fill="#00b4d8" font-size="15" font-weight="bold" filter="url(#glow4)">Phase Roadmap — DICOM-Trace Research Timeline</text>
+  <text x="450" y="48" text-anchor="middle" fill="#90e0ef" font-size="10">From Conceptual Pivot to IEEE Publication</text>
+
+  <!-- Timeline bar -->
+  <line x1="60" y1="155" x2="860" y2="155" stroke="#334155" stroke-width="2"/>
+
+  <!-- Phase A -->
+  <circle cx="110" cy="155" r="18" fill="#22c55e" opacity="0.9" filter="url(#glow4)"/>
+  <text x="110" y="160" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">A</text>
+  <text x="110" y="185" text-anchor="middle" fill="#22c55e" font-size="8" font-weight="bold">Phase A ✅</text>
+  <text x="110" y="198" text-anchor="middle" fill="#aaa" font-size="7.5">Conceptual</text>
+  <text x="110" y="210" text-anchor="middle" fill="#aaa" font-size="7.5">Pivot · Done</text>
+  <!-- A items above -->
+  <text x="110" y="128" text-anchor="middle" fill="#22c55e" font-size="7.5">README updated</text>
+  <text x="110" y="116" text-anchor="middle" fill="#22c55e" font-size="7.5">DICOM mapping</text>
+  <text x="110" y="104" text-anchor="middle" fill="#22c55e" font-size="7.5">Repo created</text>
+  <line x1="110" y1="137" x2="110" y2="155" stroke="#22c55e" stroke-width="1" stroke-dasharray="3,2"/>
+
+  <!-- Phase B -->
+  <circle cx="310" cy="155" r="18" fill="#00b4d8" opacity="0.9" filter="url(#glow4)"/>
+  <text x="310" y="160" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">B</text>
+  <text x="310" y="185" text-anchor="middle" fill="#00b4d8" font-size="8" font-weight="bold">Phase B</text>
+  <text x="310" y="198" text-anchor="middle" fill="#aaa" font-size="7.5">Proof of</text>
+  <text x="310" y="210" text-anchor="middle" fill="#aaa" font-size="7.5">Concept · 1 mo</text>
+  <!-- B items above -->
+  <text x="310" y="128" text-anchor="middle" fill="#00b4d8" font-size="7.5">pydicom adapter</text>
+  <text x="310" y="116" text-anchor="middle" fill="#00b4d8" font-size="7.5">Load TCIA MRI</text>
+  <text x="310" y="104" text-anchor="middle" fill="#00b4d8" font-size="7.5">Watermark DICOM</text>
+  <line x1="310" y1="137" x2="310" y2="155" stroke="#00b4d8" stroke-width="1" stroke-dasharray="3,2"/>
+
+  <!-- Phase C -->
+  <circle cx="560" cy="155" r="18" fill="#f59e0b" opacity="0.9" filter="url(#glow4)"/>
+  <text x="560" y="160" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">C</text>
+  <text x="560" y="185" text-anchor="middle" fill="#f59e0b" font-size="8" font-weight="bold">Phase C</text>
+  <text x="560" y="198" text-anchor="middle" fill="#aaa" font-size="7.5">Research</text>
+  <text x="560" y="210" text-anchor="middle" fill="#aaa" font-size="7.5">Paper · 2-3 mo</text>
+  <!-- C items above -->
+  <text x="560" y="128" text-anchor="middle" fill="#f59e0b" font-size="7.5">PSNR &gt; 48 dB</text>
+  <text x="560" y="116" text-anchor="middle" fill="#f59e0b" font-size="7.5">7 attack vectors</text>
+  <text x="560" y="104" text-anchor="middle" fill="#f59e0b" font-size="7.5">IEEE paper draft</text>
+  <line x1="560" y1="137" x2="560" y2="155" stroke="#f59e0b" stroke-width="1" stroke-dasharray="3,2"/>
+
+  <!-- Phase D -->
+  <circle cx="790" cy="155" r="18" fill="#a855f7" opacity="0.9" filter="url(#glow4)"/>
+  <text x="790" y="160" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">D</text>
+  <text x="790" y="185" text-anchor="middle" fill="#a855f7" font-size="8" font-weight="bold">Phase D</text>
+  <text x="790" y="198" text-anchor="middle" fill="#aaa" font-size="7.5">Full System</text>
+  <text x="790" y="210" text-anchor="middle" fill="#aaa" font-size="7.5">Semester Proj.</text>
+  <!-- D items above -->
+  <text x="790" y="128" text-anchor="middle" fill="#a855f7" font-size="7.5">PACS simulator</text>
+  <text x="790" y="116" text-anchor="middle" fill="#a855f7" font-size="7.5">HIPAA/GDPR audit</text>
+  <text x="790" y="104" text-anchor="middle" fill="#a855f7" font-size="7.5">Hospital demo</text>
+  <line x1="790" y1="137" x2="790" y2="155" stroke="#a855f7" stroke-width="1" stroke-dasharray="3,2"/>
+
+  <!-- Connecting arrows -->
+  <line x1="128" y1="155" x2="292" y2="155" stroke="#00b4d8" stroke-width="1.5"/>
+  <polygon points="292,155 284,151 284,159" fill="#00b4d8"/>
+  <line x1="328" y1="155" x2="542" y2="155" stroke="#f59e0b" stroke-width="1.5"/>
+  <polygon points="542,155 534,151 534,159" fill="#f59e0b"/>
+  <line x1="578" y1="155" x2="772" y2="155" stroke="#a855f7" stroke-width="1.5"/>
+  <polygon points="772,155 764,151 764,159" fill="#a855f7"/>
+
+  <!-- Time labels under arrows -->
+  <text x="200" y="170" text-anchor="middle" fill="#334155" font-size="8">Now → Week 4</text>
+  <text x="435" y="170" text-anchor="middle" fill="#334155" font-size="8">Week 4 → Month 3</text>
+  <text x="675" y="170" text-anchor="middle" fill="#334155" font-size="8">Month 3 → Semester End</text>
+
+  <!-- Market impact box -->
+  <rect x="30" y="240" width="840" height="64" rx="8" fill="#0a1a0a" stroke="#22c55e" stroke-width="1" opacity="0.9"/>
+  <text x="450" y="260" text-anchor="middle" fill="#22c55e" font-size="10" font-weight="bold">💰 Market Impact &amp; Research Significance</text>
+  <text x="170" y="280" text-anchor="middle" fill="#aaa" font-size="8.5">Medical Imaging Security</text>
+  <text x="170" y="294" text-anchor="middle" fill="#22c55e" font-size="12" font-weight="bold">$2.3B / yr</text>
+  <text x="360" y="280" text-anchor="middle" fill="#aaa" font-size="8.5">HIPAA Violation Cost</text>
+  <text x="360" y="294" text-anchor="middle" fill="#f59e0b" font-size="12" font-weight="bold">$1.9M / incident</text>
+  <text x="550" y="280" text-anchor="middle" fill="#aaa" font-size="8.5">Hospitals with DICOM Watermarking</text>
+  <text x="550" y="294" text-anchor="middle" fill="#ef4444" font-size="12" font-weight="bold">≈ 0%</text>
+  <text x="740" y="280" text-anchor="middle" fill="#aaa" font-size="8.5">IEEE Publication Potential</text>
+  <text x="740" y="294" text-anchor="middle" fill="#00b4d8" font-size="12" font-weight="bold">VERY HIGH</text>
+</svg>

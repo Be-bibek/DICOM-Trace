@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="900" height="520" font-family="JetBrains Mono, monospace">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0f"/>
+      <stop offset="100%" style="stop-color:#0d1a2e"/>
+    </linearGradient>
+    <linearGradient id="medGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00b4d8"/>
+      <stop offset="100%" style="stop-color:#0077b6"/>
+    </linearGradient>
+    <linearGradient id="rustGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff4500"/>
+      <stop offset="100%" style="stop-color:#cc3700"/>
+    </linearGradient>
+    <linearGradient id="pyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3d9970"/>
+      <stop offset="100%" style="stop-color:#27ae60"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="520" fill="url(#bg)" rx="14"/>
+  <rect width="900" height="520" fill="none" stroke="#00b4d8" stroke-width="1.5" rx="14" opacity="0.4"/>
+
+  <!-- Title -->
+  <text x="450" y="36" text-anchor="middle" fill="#00b4d8" font-size="17" font-weight="bold" filter="url(#glow)">DICOM-Trace · System Architecture</text>
+  <text x="450" y="56" text-anchor="middle" fill="#90e0ef" font-size="10">Behavior-Entangled Watermarking for Medical Image Integrity</text>
+
+  <!-- ─── Layer 1: Medical Imaging Input ─── -->
+  <rect x="30" y="78" width="840" height="70" rx="8" fill="#0a1628" stroke="#00b4d8" stroke-width="1" opacity="0.8"/>
+  <text x="48" y="98" fill="#00b4d8" font-size="10" font-weight="bold">MEDICAL IMAGING INPUT LAYER</text>
+
+  <!-- Input boxes -->
+  <rect x="48" y="106" width="110" height="30" rx="5" fill="#00b4d8" opacity="0.2" stroke="#00b4d8" stroke-width="1"/>
+  <text x="103" y="126" text-anchor="middle" fill="#90e0ef" font-size="9">🧠 MRI .dcm</text>
+
+  <rect x="172" y="106" width="110" height="30" rx="5" fill="#00b4d8" opacity="0.2" stroke="#00b4d8" stroke-width="1"/>
+  <text x="227" y="126" text-anchor="middle" fill="#90e0ef" font-size="9">🔬 CT Scan .dcm</text>
+
+  <rect x="296" y="106" width="110" height="30" rx="5" fill="#00b4d8" opacity="0.2" stroke="#00b4d8" stroke-width="1"/>
+  <text x="351" y="126" text-anchor="middle" fill="#90e0ef" font-size="9">📡 X-Ray .dcm</text>
+
+  <rect x="420" y="106" width="110" height="30" rx="5" fill="#00b4d8" opacity="0.2" stroke="#00b4d8" stroke-width="1"/>
+  <text x="475" y="126" text-anchor="middle" fill="#90e0ef" font-size="9">🔊 Ultrasound .dcm</text>
+
+  <rect x="544" y="106" width="140" height="30" rx="5" fill="#00b4d8" opacity="0.2" stroke="#00b4d8" stroke-width="1"/>
+  <text x="614" y="126" text-anchor="middle" fill="#90e0ef" font-size="9">📋 Radiology Report</text>
+
+  <rect x="698" y="106" width="160" height="30" rx="5" fill="#00b4d8" opacity="0.2" stroke="#00b4d8" stroke-width="1"/>
+  <text x="778" y="126" text-anchor="middle" fill="#90e0ef" font-size="9">🏥 PACS Network Stream</text>
+
+  <!-- Arrow down -->
+  <line x1="450" y1="148" x2="450" y2="166" stroke="#00b4d8" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="450,170 445,162 455,162" fill="#00b4d8"/>
+
+  <!-- ─── Layer 2: Rust Core Engine ─── -->
+  <rect x="30" y="172" width="840" height="120" rx="8" fill="#1a0800" stroke="#ff4500" stroke-width="1.2" opacity="0.9"/>
+  <text x="48" y="193" fill="#ff4500" font-size="10" font-weight="bold">⚙️  RUST CORE ENGINE  (sentinelmark_core — domain-agnostic primitives)</text>
+
+  <!-- behavior -->
+  <rect x="48" y="202" width="155" height="76" rx="6" fill="#ff4500" opacity="0.12" stroke="#ff4500" stroke-width="1"/>
+  <text x="125" y="220" text-anchor="middle" fill="#ff4500" font-size="9" font-weight="bold">behavior</text>
+  <text x="125" y="234" text-anchor="middle" fill="#aaa" font-size="8">MRI Device Fingerprint</text>
+  <text x="125" y="246" text-anchor="middle" fill="#aaa" font-size="8">Field Strength · Coil ID</text>
+  <text x="125" y="258" text-anchor="middle" fill="#aaa" font-size="8">Acquisition Protocol</text>
+  <text x="125" y="270" text-anchor="middle" fill="#aaa" font-size="8">Scanner Jitter Entropy</text>
+
+  <!-- watermark -->
+  <rect x="215" y="202" width="155" height="76" rx="6" fill="#ff4500" opacity="0.12" stroke="#ff4500" stroke-width="1"/>
+  <text x="292" y="220" text-anchor="middle" fill="#ff4500" font-size="9" font-weight="bold">watermark (BEW)</text>
+  <text x="292" y="234" text-anchor="middle" fill="#aaa" font-size="8">LSB Pixel Embedding</text>
+  <text x="292" y="246" text-anchor="middle" fill="#aaa" font-size="8">PSNR &gt; 48 dB</text>
+  <text x="292" y="258" text-anchor="middle" fill="#aaa" font-size="8">Diagnostically Invisible</text>
+  <text x="292" y="270" text-anchor="middle" fill="#aaa" font-size="8">HKDF-SHA256 Derivation</text>
+
+  <!-- chain -->
+  <rect x="382" y="202" width="155" height="76" rx="6" fill="#ff4500" opacity="0.12" stroke="#ff4500" stroke-width="1"/>
+  <text x="459" y="220" text-anchor="middle" fill="#ff4500" font-size="9" font-weight="bold">chain</text>
+  <text x="459" y="234" text-anchor="middle" fill="#aaa" font-size="8">Patient Scan History</text>
+  <text x="459" y="246" text-anchor="middle" fill="#aaa" font-size="8">Append-Only SHA-256</text>
+  <text x="459" y="258" text-anchor="middle" fill="#aaa" font-size="8">Insurance Fraud Guard</text>
+  <text x="459" y="270" text-anchor="middle" fill="#aaa" font-size="8">Temporal Ordering</text>
+
+  <!-- crypto -->
+  <rect x="549" y="202" width="155" height="76" rx="6" fill="#ff4500" opacity="0.12" stroke="#ff4500" stroke-width="1"/>
+  <text x="626" y="220" text-anchor="middle" fill="#ff4500" font-size="9" font-weight="bold">crypto</text>
+  <text x="626" y="234" text-anchor="middle" fill="#aaa" font-size="8">Pixel Block Hashing</text>
+  <text x="626" y="246" text-anchor="middle" fill="#aaa" font-size="8">Constant-Time Verify</text>
+  <text x="626" y="258" text-anchor="middle" fill="#aaa" font-size="8">Key Zeroization</text>
+  <text x="626" y="270" text-anchor="middle" fill="#aaa" font-size="8">Timing Oracle Defense</text>
+
+  <!-- transport -->
+  <rect x="716" y="202" width="140" height="76" rx="6" fill="#ff4500" opacity="0.12" stroke="#ff4500" stroke-width="1"/>
+  <text x="786" y="220" text-anchor="middle" fill="#ff4500" font-size="9" font-weight="bold">transport</text>
+  <text x="786" y="234" text-anchor="middle" fill="#aaa" font-size="8">PACS Network</text>
+  <text x="786" y="246" text-anchor="middle" fill="#aaa" font-size="8">Async DICOM TX</text>
+  <text x="786" y="258" text-anchor="middle" fill="#aaa" font-size="8">Tamper-Evident Env.</text>
+  <text x="786" y="270" text-anchor="middle" fill="#aaa" font-size="8">Exponential Backoff</text>
+
+  <!-- Arrow down -->
+  <line x1="450" y1="292" x2="450" y2="310" stroke="#3d9970" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="450,314 445,306 455,306" fill="#3d9970"/>
+
+  <!-- ─── Layer 3: Python Verifier ─── -->
+  <rect x="30" y="316" width="840" height="100" rx="8" fill="#001a0f" stroke="#3d9970" stroke-width="1.2" opacity="0.9"/>
+  <text x="48" y="337" fill="#3d9970" font-size="10" font-weight="bold">🐍  PYTHON VERIFICATION AUTHORITY  (verify-py — 4-Stage Forensic Pipeline)</text>
+
+  <rect x="48" y="346" width="185" height="56" rx="6" fill="#27ae60" opacity="0.12" stroke="#27ae60" stroke-width="1"/>
+  <text x="140" y="364" text-anchor="middle" fill="#27ae60" font-size="8.5" font-weight="bold">① Structural Check</text>
+  <text x="140" y="378" text-anchor="middle" fill="#aaa" font-size="8">DICOM header validation</text>
+  <text x="140" y="390" text-anchor="middle" fill="#aaa" font-size="8">Pixel integrity schema</text>
+
+  <rect x="248" y="346" width="185" height="56" rx="6" fill="#27ae60" opacity="0.12" stroke="#27ae60" stroke-width="1"/>
+  <text x="340" y="364" text-anchor="middle" fill="#27ae60" font-size="8.5" font-weight="bold">② Cryptographic Integrity</text>
+  <text x="340" y="378" text-anchor="middle" fill="#aaa" font-size="8">Watermark re-derivation</text>
+  <text x="340" y="390" text-anchor="middle" fill="#aaa" font-size="8">BEW constant-time match</text>
+
+  <rect x="448" y="346" width="185" height="56" rx="6" fill="#27ae60" opacity="0.12" stroke="#27ae60" stroke-width="1"/>
+  <text x="540" y="364" text-anchor="middle" fill="#27ae60" font-size="8.5" font-weight="bold">③ Replay Validation</text>
+  <text x="540" y="378" text-anchor="middle" fill="#aaa" font-size="8">Old scan re-use detection</text>
+  <text x="540" y="390" text-anchor="middle" fill="#aaa" font-size="8">SQLite WAL nonce cache</text>
+
+  <rect x="648" y="346" width="210" height="56" rx="6" fill="#27ae60" opacity="0.12" stroke="#27ae60" stroke-width="1"/>
+  <text x="753" y="364" text-anchor="middle" fill="#27ae60" font-size="8.5" font-weight="bold">④ Behavioral Authenticity</text>
+  <text x="753" y="378" text-anchor="middle" fill="#aaa" font-size="8">Z-score pixel distribution</text>
+  <text x="753" y="390" text-anchor="middle" fill="#aaa" font-size="8">Adversarial anomaly flag</text>
+
+  <!-- Arrow down -->
+  <line x1="450" y1="416" x2="450" y2="432" stroke="#ffd60a" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="450,436 445,428 455,428" fill="#ffd60a"/>
+
+  <!-- ─── Layer 4: Compliance & Output ─── -->
+  <rect x="30" y="438" width="840" height="62" rx="8" fill="#1a1500" stroke="#ffd60a" stroke-width="1.2" opacity="0.9"/>
+  <text x="48" y="458" fill="#ffd60a" font-size="10" font-weight="bold">⚖️  COMPLIANCE &amp; FORENSIC OUTPUT</text>
+
+  <rect x="48" y="466" width="130" height="24" rx="4" fill="#ffd60a" opacity="0.15" stroke="#ffd60a" stroke-width="0.8"/>
+  <text x="113" y="482" text-anchor="middle" fill="#ffd60a" font-size="8">HIPAA §164.312(b)</text>
+
+  <rect x="192" y="466" width="130" height="24" rx="4" fill="#ffd60a" opacity="0.15" stroke="#ffd60a" stroke-width="0.8"/>
+  <text x="257" y="482" text-anchor="middle" fill="#ffd60a" font-size="8">FDA 21 CFR Part 11</text>
+
+  <rect x="336" y="466" width="130" height="24" rx="4" fill="#ffd60a" opacity="0.15" stroke="#ffd60a" stroke-width="0.8"/>
+  <text x="401" y="482" text-anchor="middle" fill="#ffd60a" font-size="8">IHE ATNA Audit Trail</text>
+
+  <rect x="480" y="466" width="130" height="24" rx="4" fill="#ffd60a" opacity="0.15" stroke="#ffd60a" stroke-width="0.8"/>
+  <text x="545" y="482" text-anchor="middle" fill="#ffd60a" font-size="8">GDPR Art. 32</text>
+
+  <rect x="624" y="466" width="130" height="24" rx="4" fill="#ffd60a" opacity="0.15" stroke="#ffd60a" stroke-width="0.8"/>
+  <text x="689" y="482" text-anchor="middle" fill="#ffd60a" font-size="8">ISO 12052 (DICOM)</text>
+
+  <rect x="768" y="466" width="90" height="24" rx="4" fill="#ffd60a" opacity="0.15" stroke="#ffd60a" stroke-width="0.8"/>
+  <text x="813" y="482" text-anchor="middle" fill="#ffd60a" font-size="8">HL7 FHIR</text>
+</svg>
