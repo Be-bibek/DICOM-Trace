@@ -42,7 +42,7 @@ async def verify_zk_proof(payload: ZKProofPayload):
             # For a production deployment without Node.js, we would use a Python pairing library 
             # like py_ecc or similar, or FFI into a Rust verifier.
             result = subprocess.run(
-                ["snarkjs", "groth16", "verify", vkey_path, public_path, proof_path],
+                ["npx.cmd", "snarkjs", "groth16", "verify", vkey_path, public_path, proof_path],
                 capture_output=True,
                 text=True,
                 check=False

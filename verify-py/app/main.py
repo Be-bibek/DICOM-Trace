@@ -11,6 +11,7 @@ Phase 3: Stateful Forensic Verification Authority
 """
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 
 from app.db.session import init_db
@@ -37,8 +38,20 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+# Add CORS Middleware to allow requests from the Vite frontend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins for the local demo
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # Register routers
 app.include_router(health.router)
 app.include_router(ingest.router)
 app.include_router(metrics.router)
 app.include_router(zk_verify.router)
+
+from app.api import broker
+app.include_router(broker.router)
