@@ -1,0 +1,13 @@
+{
+  "name": "dicom-trace-contracts",
+  "version": "0.1.0",
+  "description": "Solidity provenance ledger smart contracts for SentinelMark / DICOM-Trace",
+  "main": "hardhat.config.js",
+  "scripts": {
+    "test": "hardhat test"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "hardhat": "^2.19.5"
+  }
+}

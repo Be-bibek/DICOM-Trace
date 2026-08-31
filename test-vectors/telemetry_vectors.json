@@ -1,0 +1,13 @@
+{
+  "description": "SentinelMark BehaviorFingerprint Canonical 64-Byte Test Vectors",
+  "vector_1": {
+    "device_id_hex": "1111111111111111111111111111111111111111111111111111111111111111",
+    "timestamp": 1776510000,
+    "cpu_freq_mhz": 3500,
+    "thread_count": 16,
+    "jitter_ns": 120,
+    "sequence_id": 1,
+    "packed_hex": "11111111111111111111111111111111111111111111111111111111111111113064e36900000000ac0d00001000000078000000000000000100000000000000",
+    "fingerprint_sha256": "5bf6bac86a894c95cb446e1fa14d4c7252a0fa768fc1e6964fbcddc6b5a49395"
+  }
+}

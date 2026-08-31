@@ -174,6 +174,7 @@ dicom-trace (Built on SentinelMark Core Engine)
 ### Prerequisites
 - **Rust** Toolchain `1.75+` (for the core watermarking engine)
 - **Python** `3.10+` and `pip` (for the verification authority and DICOM adapter)
+- **Node.js** `18+` (for the Vite frontend and smart contracts)
 - `pydicom` — DICOM file I/O Python library
 
 ### Core Engine (Rust)
@@ -195,6 +196,14 @@ python -m pytest tests/ -v
 # Start the DICOM verification server
 uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 ```
+
+### Frontend Web Viewer (Zero-Trust WASM Enclave)
+```bash
+cd viewer-webapp
+npm install
+npm run dev
+```
+Open `http://localhost:5173` in your browser.
 
 ### Attack Simulations
 ```bash

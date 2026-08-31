@@ -1,0 +1,11 @@
+{
+  "iterations": 50,
+  "payload_size_kb": 512,
+  "watermark_embed_ms": 0.039,
+  "watermark_extract_ms": 0.011,
+  "encryption_ingest_ms": 2.495,
+  "verification_ms": 0.022,
+  "throughput_mb_sec": 200.38,
+  "psnr_db": 129.76,
+  "psnr_passed": true
+}

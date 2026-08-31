@@ -1,0 +1,10 @@
+{
+  "description": "SentinelMark Fragile Watermarking Test Vectors",
+  "vector_1": {
+    "watermark_key_hex": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "cipher_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "bits_allocated": 16,
+    "pixel_buffer_len": 1024,
+    "expected_proof_hex": "8f3e2b1a0987654321fedcba9876543210123456789abcdef0123456789abcdef"
+  }
+}

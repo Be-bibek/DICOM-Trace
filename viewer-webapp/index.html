@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SentinelMark - Secure Ephemeral Viewer</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <div id="app">
+      <header class="glass-header">
+        <h1>SentinelMark | Zero-Trust Viewer</h1>
+        <div id="status-badge" class="badge">Initializing...</div>
+      </header>
+      <main class="split-view">
+        <!-- Sender Panel -->
+        <div class="panel sender-panel glass-panel">
+          <h2>Sender (User 1)</h2>
+          
+          <div class="control-group">
+            <input type="text" id="sender-id" placeholder="Sender ID" value="user_sender_01" />
+            <button id="btn-sender-init">1. Gen & Reg Keys</button>
+          </div>
+          <p class="key-display">Pub: <span id="sender-pub">N/A</span></p>
+
+          <div class="control-group">
+            <label for="file-upload" style="font-size:0.8rem; margin-top:5px; margin-bottom:5px;">Select File:</label>
+            <input type="file" id="file-upload" accept=".png,.dcm,.jpg,.jpeg" />
+          </div>
+          
+          <!-- Sender Preview -->
+          <div style="margin-top: 15px; background: #0f172a; padding: 10px; border-radius: 6px; display: flex; justify-content: center; align-items: center; min-height: 200px;">
+            <canvas id="sender-canvas" width="256" height="256" style="background: #000; border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); max-width: 100%; height: auto;"></canvas>
+          </div>
+          <div class="control-group" style="margin-top: 10px;">
+            <button id="btn-load-mr" class="btn-secondary">Load MR_small.dcm</button>
+            <button id="btn-load-ct" class="btn-secondary">Load CT_small.dcm</button>
+          </div>
+
+          <div class="control-group">
+            <input type="text" id="target-recipient-id" placeholder="Recipient ID" value="user_receiver_02" />
+            <button id="btn-sender-send" disabled>2. Encrypt & Transmit</button>
+          </div>
+          <p id="sender-status">Idle</p>
+        </div>
+
+        <!-- Receiver Panel -->
+        <div class="panel receiver-panel glass-panel">
+          <h2>Receiver (User 2)</h2>
+          <div class="control-group">
+            <input type="text" id="receiver-id" placeholder="Receiver ID" value="user_receiver_02" />
+            <button id="btn-receiver-init">1. Gen & Reg Keys</button>
+          </div>
+          <p class="key-display">Pub: <span id="receiver-pub">N/A</span></p>
+          
+          <div class="control-group">
+            <button id="btn-receiver-fetch" disabled>2. Fetch & Decrypt</button>
+          </div>
+          <p id="receiver-status">Idle</p>
+          
+          <div class="viewer-container">
+            <canvas id="dicom-canvas" width="256" height="256"></canvas>
+          </div>
+          
+          <div class="controls">
+            <p>Mem: <span id="mem-alloc">0 bytes</span></p>
+            <button id="btn-attack" class="btn-danger">Breach Attack</button>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

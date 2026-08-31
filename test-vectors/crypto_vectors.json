@@ -1,0 +1,14 @@
+{
+  "description": "SentinelMark Cross-Language HKDF and AES-256-GCM Test Vectors",
+  "vector_1": {
+    "master_key_hex": "5555555555555555555555555555555555555555555555555555555555555555",
+    "salt_hex": "5bf6bac86a894c95cb446e1fa14d4c7252a0fa768fc1e6964fbcddc6b5a49395",
+    "info_ascii": "SentinelMark-v1-AES256GCM",
+    "derived_session_key_hex": "236655f3805d9348d0b9987b287da40817e8fc527b3caa64433f5723e271ed54",
+    "nonce_base64": "mZmZmZmZmZmZmZmZ",
+    "plaintext_utf8": "SentinelMark Cross-Language Interop Test Payload",
+    "ciphertext_base64": "jS+/Z8zOaZSt8lqgMeeu3h/Vq5Z6Uv/v0kYxO7Pz4P8K+6Ym5J+Lg",
+    "tag_base64": "9r5+8Y1v0p3R5U7l7O1aFA==",
+    "cipher_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

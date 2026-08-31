@@ -1,0 +1,41 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "C:\\Users\\debar\\Desktop\\my documents\\Dicom Trace\\contracts\\contracts\\DICOMTrustLedger.sol": {
+      "lastModificationDate": 1787077413999,
+      "contentHash": "0a743cf2d6e2d2578af01383a04a9b91",
+      "sourceName": "contracts/DICOMTrustLedger.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "DICOMTrustLedger"
+      ]
+    }
+  }
+}
