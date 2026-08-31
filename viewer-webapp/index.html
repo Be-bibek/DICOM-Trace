@@ -42,6 +42,13 @@
             <button id="btn-sender-send" disabled>2. Encrypt & Transmit</button>
           </div>
           <p id="sender-status">Idle</p>
+
+          <hr style="border-color: #334155; margin: 15px 0;">
+
+          <div class="control-group">
+            <button id="btn-sender-zk" class="btn-secondary" disabled>3. Generate ZK Proof</button>
+          </div>
+          <p id="sender-zk-status">No Proof Generated</p>
         </div>
 
         <!-- Receiver Panel -->
@@ -68,6 +75,16 @@
           </div>
         </div>
       </main>
+
+      <section class="ledger-panel glass-panel">
+        <div class="ledger-header">
+          <h2>Verification Authority (Zero-Knowledge Oracle)</h2>
+          <button id="btn-ledger-verify" disabled>Verify SNARK on Network</button>
+        </div>
+        <div class="terminal">
+          <pre id="terminal-output">> Listening for cryptographic telemetry on channel [ZK-BEW]...</pre>
+        </div>
+      </section>
     </div>
     <script type="module" src="/src/main.ts"></script>
   </body>

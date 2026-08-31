@@ -15,8 +15,7 @@ from contextlib import asynccontextmanager
 
 from app.db.session import init_db
 from app.logging.config import configure_logging
-from app.api import ingest, health, metrics
-
+from app.api import ingest, health, metrics, zk_verify
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -42,3 +41,4 @@ app = FastAPI(
 app.include_router(health.router)
 app.include_router(ingest.router)
 app.include_router(metrics.router)
+app.include_router(zk_verify.router)

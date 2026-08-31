@@ -34,3 +34,4 @@ logs/
 # Compiled assets
 *.pyc
 *.pyo
+zk-circuits/circom.exe

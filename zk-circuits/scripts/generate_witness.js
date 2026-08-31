@@ -81,8 +81,15 @@ function generateWitness({ pixels, kDevice, phi, hPrev, entropyMu, entropySigma 
     const bewBuf   = hkdfApprox(kDevice, phi, hPrev);
     const bewBits  = bufToBits(bewBuf);
 
-    // Compute pixel SHA-256 commitment
-    const pixelBuf    = Buffer.from(pixels);
+    // Compute pixel SHA-256 commitment (matching circuit's LSB-first feeding)
+    const flippedPixels = pixels.map(p => {
+        let flipped = 0;
+        for (let i = 0; i < 8; i++) {
+            flipped |= ((p >> i) & 1) << (7 - i);
+        }
+        return flipped;
+    });
+    const pixelBuf    = Buffer.from(flippedPixels);
     const commitBits  = sha256Bits(pixelBuf);
 
     // Compute entropy

@@ -1,8 +1,8 @@
 pragma circom 2.1.6;
 
-include "./node_modules/circomlib/circuits/sha256/sha256.circom";
-include "./node_modules/circomlib/circuits/comparators.circom";
-include "./node_modules/circomlib/circuits/bitify.circom";
+include "circomlib/circuits/sha256/sha256.circom";
+include "circomlib/circuits/comparators.circom";
+include "circomlib/circuits/bitify.circom";
 
 /*
  * BEWWatermarkProof Circuit
@@ -49,9 +49,9 @@ template HKDF_SHA256() {
     // Concatenate inputs: 768 bits total
     signal concat[768];
     for (var i = 0; i < 256; i++) {
-        concat[i]       = prk_bits[i];
-        concat[256 + i] = phi_bits[i];
-        concat[512 + i] = prev_bits[i];
+        concat[i]       <== prk_bits[i];
+        concat[256 + i] <== phi_bits[i];
+        concat[512 + i] <== prev_bits[i];
     }
 
     component hasher = Sha256(768);
