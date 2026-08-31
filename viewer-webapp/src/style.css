@@ -84,6 +84,9 @@ body {
   align-items: center;
   gap: 0.5rem;
   flex-shrink: 0;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
 }
 
 .glass-header h1 {
@@ -167,6 +170,18 @@ h2 {
 .control-row {
   display: flex;
   gap: 0.5rem;
+  align-items: center;
+  width: 100%;
+}
+
+.control-row input {
+  flex: 1;
+}
+
+.control-row button {
+  width: auto;
+  padding: 0.6rem 1.2rem;
+  flex-shrink: 0;
 }
 
 label {
@@ -175,7 +190,7 @@ label {
   font-weight: 600;
 }
 
-input[type="text"], input[type="file"] {
+input[type="text"] {
   width: 100%;
   padding: 0.6rem 0.8rem;
   background: rgba(255, 255, 255, 0.6);
@@ -188,19 +203,34 @@ input[type="text"], input[type="file"] {
 }
 
 input[type="file"] {
+  width: 100%;
   font-family: var(--font-primary);
-  padding: 0.4rem;
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
 }
 
 input[type="file"]::file-selector-button {
   background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(0,0,0,0.05);
-  border-radius: 6px;
-  color: var(--text-main);
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 8px;
+  color: var(--text-dark);
   font-weight: 600;
-  padding: 0.3rem 0.6rem;
-  margin-right: 0.5rem;
+  padding: 0.5rem 1rem;
+  margin-right: 1rem;
   cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+input[type="file"]::file-selector-button:hover {
+  background: #ffffff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transform: translateY(-1px);
 }
 
 input:focus {
