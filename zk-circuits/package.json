@@ -1,0 +1,30 @@
+{
+  "name": "zk-circuits",
+  "version": "1.0.0",
+  "description": "ZK-BEW: Zero-Knowledge Behavior-Entangled Watermark Proof circuits for DICOM-Trace. IEEE research artifact.",
+  "main": "scripts/generate_witness.js",
+  "type": "commonjs",
+  "scripts": {
+    "witness":    "node scripts/generate_witness.js",
+    "verify":     "node scripts/verify_proof.js",
+    "test:witness": "node -e \"const {generateWitness} = require('./scripts/generate_witness.js'); const crypto = require('crypto'); const pixels = Array.from({length:64}, ()=>Math.floor(Math.random()*256)); const w = generateWitness({pixels, kDevice: crypto.randomBytes(32).toString('hex'), phi: crypto.randomBytes(32).toString('hex'), hPrev: crypto.randomBytes(32).toString('hex'), entropyMu: 6.5, entropySigma: 0.4}); console.log('Witness generated OK. Entropy in bounds:', w.pixel_entropy >= w.entropy_lo && w.pixel_entropy <= w.entropy_hi);\""
+  },
+  "keywords": [
+    "zk-snark",
+    "groth16",
+    "circom",
+    "medical-imaging",
+    "DICOM",
+    "watermarking",
+    "zero-knowledge",
+    "IEEE",
+    "BEW",
+    "privacy-preserving"
+  ],
+  "author": "Bibek Das <bibekdas1055@gmail.com>",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "circomlib": "^2.0.5",
+    "snarkjs": "^0.7.5"
+  }
+}

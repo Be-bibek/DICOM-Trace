@@ -42,11 +42,29 @@ Hospitals exchange millions of DICOM files daily across PACS networks. Currently
 
 ---
 
-## 🔬 Core Innovation: BEW Applied to DICOM
+## 🔬 Core Innovation: ZK-BEW (The Novel IEEE Contribution)
+
+The critical unsolved problem in medical image security:
+
+> **"How do you prove a DICOM scan is authentic WITHOUT showing it to the verifier?"**
+
+Every existing system forces you to choose privacy OR verifiability. **ZK-BEW solves both simultaneously.**
+
+| Approach | Patient Privacy | Cryptographic Verifiability |
+|---|---|---|
+| Traditional watermarking | ❌ Image sent to verifier | ✅ Can verify |
+| Standard encryption | ✅ Private | ❌ Blind verifier cannot check |
+| **ZK-BEW (this work)** | ✅ **PHI never disclosed** | ✅ **Groth16 ZK proof** |
+
+The mathematical foundation is a **Groth16 ZK-SNARK circuit** that simultaneously proves three claims from private pixel data — producing a ~800-byte proof instead of the full DICOM file:
 
 The mathematical foundation is the **Behavior-Entangled Watermark** derivation:
 
 $$W_{\text{DICOM}} = \text{HKDF-SHA256}\bigl(K_{\text{device}} \parallel \text{ScannerFingerprint}_i \parallel H_{\text{prev\_scan}}\bigr)$$
+
+This derivation feeds the ZK circuit's private witness. **The verifier sees only a 800-byte proof — never the pixels.**
+
+See [`zk-circuits/`](zk-circuits/README.md) for the full ZK circuit implementation.
 
 Where:
 - **$K_{\text{device}}$**: Long-term MRI scanner secret — zeroized immediately post-derivation.
@@ -102,6 +120,10 @@ dicom-trace (Built on SentinelMark Core Engine)
     Async resilient DICOM transmission with immutable tamper-evident envelopes.
     Retries never re-serialize payloads — nonces and timestamps remain fixed.
     Maps directly to inter-hospital PACS (Picture Archiving & Communication System).
+
+└── zk-circuits →  ZK-SNARK Proof Engine  (NEW — Core IEEE Contribution)
+    Groth16 circuit proves BEW integrity, image commitment, and entropy bounds.
+    Verifier receives a ~800-byte proof. PHI is NEVER disclosed.
 ```
 
 ---
