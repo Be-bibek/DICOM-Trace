@@ -24,50 +24,43 @@
           <h2>1. Hospital (Sender)</h2>
           
           <div class="control-group">
-            <label>Initialize Ephemeral Keys:</label>
             <div class="control-row">
               <input type="text" id="sender-id" placeholder="Sender ID" value="user_sender_01" />
-              <button id="btn-sender-init">Generate</button>
+              <button id="btn-sender-init">Generate Keys</button>
             </div>
-            <p class="key-display">Pub: <span id="sender-pub">N/A</span></p>
+            <p class="key-display">Pub: <span id="sender-pub">Pending...</span></p>
           </div>
 
-          <hr>
-
-          <div class="control-group">
-            <label for="file-upload">Select DICOM File:</label>
-            <input type="file" id="file-upload" accept=".png,.dcm,.jpg,.jpeg" />
-            <div class="control-row" style="margin-top: 0.5rem;">
-              <button id="btn-load-mr" class="btn-secondary">Demo MRI</button>
-              <button id="btn-load-ct" class="btn-secondary">Demo CT</button>
+          <div class="card-inset">
+            <div class="control-row" style="margin-bottom: 0.5rem;">
+              <input type="file" id="file-upload" accept=".png,.dcm,.jpg,.jpeg" />
             </div>
-          </div>
-          
-          <div class="canvas-wrapper">
-            <canvas id="sender-canvas" width="256" height="256"></canvas>
-          </div>
-          <p id="sender-status">Idle</p>
-
-          <hr>
-
-          <div class="control-group">
-            <label>ZK-BEW Generation:</label>
-            <button id="btn-sender-zk" class="btn-zk" disabled>Generate SNARK Proof</button>
-            <p id="sender-zk-status">Awaiting file load...</p>
+            <div class="control-row">
+              <button id="btn-load-mr" class="btn-secondary">Load Demo MRI</button>
+              <button id="btn-load-ct" class="btn-secondary">Load Demo CT</button>
+            </div>
+            <div class="canvas-wrapper">
+              <canvas id="sender-canvas" width="256" height="256"></canvas>
+            </div>
+            <p id="sender-status" class="status-text">Idle</p>
           </div>
 
-          <hr>
+          <div class="control-group" style="margin-top: 1rem;">
+            <button id="btn-sender-zk" class="btn-zk" disabled>Generate ZK-SNARK Proof</button>
+            <p id="sender-zk-status" class="status-text text-center">Awaiting file load...</p>
+          </div>
 
-          <div class="control-group">
-            <label>Target Recipient:</label>
-            <input type="text" id="target-recipient-id" placeholder="Recipient ID" value="user_receiver_02" />
+          <div class="control-group" style="margin-top: auto;">
+            <div class="control-row">
+              <input type="text" id="target-recipient-id" placeholder="Target Recipient ID" value="user_receiver_02" />
+            </div>
             <button id="btn-sender-send" disabled style="margin-top: 0.5rem;">Encrypt & Transmit E2E</button>
           </div>
         </div>
 
         <!-- ORACLE PANEL (Column 2) -->
         <div class="panel oracle-panel glass-panel">
-          <h2>2. ZK Verification Authority</h2>
+          <h2>2. Verification Oracle</h2>
           
           <div class="zk-metrics">
             <div class="metric-card">
@@ -76,7 +69,7 @@
             </div>
             <div class="metric-card">
               <span class="value">804 B</span>
-              <span class="label">Proof Size</span>
+              <span class="label">Proof Payload Size</span>
             </div>
             <div class="metric-card">
               <span class="value">2.8s</span>
@@ -104,32 +97,28 @@
           <h2>3. Doctor (Receiver)</h2>
           
           <div class="control-group">
-            <label>Initialize Ephemeral Keys:</label>
             <div class="control-row">
               <input type="text" id="receiver-id" placeholder="Receiver ID" value="user_receiver_02" />
-              <button id="btn-receiver-init">Generate</button>
+              <button id="btn-receiver-init">Generate Keys</button>
             </div>
-            <p class="key-display">Pub: <span id="receiver-pub">N/A</span></p>
+            <p class="key-display">Pub: <span id="receiver-pub">Pending...</span></p>
           </div>
           
-          <hr>
-
-          <div class="control-group">
-            <label>Fetch E2E Payload:</label>
-            <button id="btn-receiver-fetch" disabled>Fetch & Decrypt in WASM</button>
-          </div>
-          <p id="receiver-status">Idle</p>
-          
-          <div class="canvas-wrapper">
-            <canvas id="dicom-canvas" width="256" height="256"></canvas>
-          </div>
-          
-          <div class="receiver-stats">
-            <span>MEM: <span id="mem-alloc" style="color: var(--accent-green);">0 bytes</span></span>
-            <span id="mem-status">SAFE</span>
+          <div class="card-inset" style="margin-top: 1rem;">
+            <button id="btn-receiver-fetch" disabled>Fetch & Decrypt Payload</button>
+            <p id="receiver-status" class="status-text text-center">Awaiting transmission...</p>
+            
+            <div class="canvas-wrapper">
+              <canvas id="dicom-canvas" width="256" height="256"></canvas>
+            </div>
+            
+            <div class="receiver-stats">
+              <span>MEM: <span id="mem-alloc" style="color: var(--accent-green); font-weight: 700;">0 bytes</span></span>
+              <span id="mem-status" style="font-weight: 700;">SAFE</span>
+            </div>
           </div>
 
-          <button id="btn-attack" class="btn-danger">Simulate Memory Breach (Zeroize)</button>
+          <button id="btn-attack" class="btn-danger" style="margin-top: auto;">Simulate Memory Breach (Zeroize)</button>
         </div>
 
       </main>
