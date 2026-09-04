@@ -1,4 +1,4 @@
-import { UserProfile, DicomScan, DagNode, ZkProofMetadata, HardwareTelemetry } from '../types';
+import type { UserProfile, DicomScan, DagNode, ZkProofMetadata, HardwareTelemetry } from '../types';
 
 export const USER_PROFILES: UserProfile[] = [
   {

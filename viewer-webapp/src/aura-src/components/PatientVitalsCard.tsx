@@ -19,22 +19,22 @@ export const PatientVitalsCard: React.FC<PatientVitalsCardProps> = ({ patient })
   return (
     <div 
       id="patient-intake-card"
-      className="p-4 milk-card transition-all duration-300 relative overflow-hidden"
+      className="p-4 neumo-card transition-all duration-300 relative overflow-hidden"
     >
       {/* Subtle top specular sheen */}
       <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/80 dark:via-slate-700 to-transparent" />
 
       {/* Header */}
-      <div className="flex items-center justify-between gap-2 mb-3">
+      <div className="neumo-card p-5 h-full flex flex-col justify-between gap-2 mb-3">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full bg-amber-500/15 dark:bg-amber-500/20 border border-amber-400/40 dark:border-amber-400/30 flex items-center justify-center text-amber-700 dark:text-amber-400">
+          <div className="w-full p-3.5 neumo-inset flex items-start gap-3 justify-center text-amber-700 dark:text-amber-400">
             <Activity className="w-4 h-4" />
           </div>
           <div>
             <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Patient Intake</h3>
             <h2 className="text-base font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
               <span>{patient.name}</span>
-              <span className="text-xs font-normal px-2 py-0.5 rounded-full bg-white/80 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-mono">
+              <span className="flex flex-col items-center justify-center p-3 neumo-inset text-slate-600 dark:text-slate-300 font-mono">
                 {patient.gender}, {patient.age}y
               </span>
             </h2>

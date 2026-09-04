@@ -63,7 +63,7 @@ export const ConsensusDagCard: React.FC<ConsensusDagCardProps> = ({
   return (
     <div 
       id="consensus-dag-card"
-      className="p-4 milk-card flex flex-col justify-between transition-all duration-300 relative overflow-hidden"
+      className="p-4 md:p-5 neumo-card h-full flex flex-col justify-between transition-all duration-300 relative overflow-hidden"
     >
       {/* Header */}
       <div className="flex items-center justify-between gap-2 mb-3">
@@ -95,7 +95,7 @@ export const ConsensusDagCard: React.FC<ConsensusDagCardProps> = ({
               )}
 
               <div 
-                className={`p-3 rounded-2xl transition-all relative z-10 ${
+                className={`p-4 neumo-inset transition-all relative z-10 ${
                   node.isGenesis
                     ? 'bg-slate-900/90 text-white border border-slate-700/80 shadow-md'
                     : 'bg-white/80 dark:bg-slate-800/80 border border-white/95 dark:border-slate-700/80 text-slate-800 dark:text-slate-200 shadow-xs hover:shadow-sm'
@@ -128,8 +128,8 @@ export const ConsensusDagCard: React.FC<ConsensusDagCardProps> = ({
                     </span>
                   )}
                   {node.decision === 'modify' && (
-                    <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 border border-amber-300 dark:border-amber-800/60 flex items-center gap-1">
-                      <AlertTriangle className="w-3 h-3 text-amber-600 dark:text-amber-400" />
+                    <span className="w-full neumo-btn py-3 mt-2 font-bold text-amber-600 dark:text-amber-400">
+                      <AlertTriangle className="w-3 h-3" />
                       Modified
                     </span>
                   )}

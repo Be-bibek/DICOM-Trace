@@ -35,7 +35,7 @@ export const AiClinicalReportCard: React.FC<AiClinicalReportCardProps> = ({
   return (
     <div 
       id="structured-ai-clinical-report-card"
-      className="p-4 milk-card flex flex-col justify-between transition-all duration-300 relative overflow-hidden"
+      className="p-5 neumo-card flex flex-col h-full relative"
     >
       {/* Header */}
       <div className="flex items-center justify-between gap-2 mb-3">
@@ -51,7 +51,7 @@ export const AiClinicalReportCard: React.FC<AiClinicalReportCardProps> = ({
 
         <button
           onClick={handleCopyReport}
-          className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/80 hover:bg-white dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-200 border border-white dark:border-slate-700 shadow-xs transition-all active:scale-95 flex items-center gap-1"
+          className="flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-bold text-slate-600 dark:text-slate-300 neumo-btn"
           title="Copy report to clinical clipboard"
         >
           {copied ? (
@@ -86,7 +86,7 @@ export const AiClinicalReportCard: React.FC<AiClinicalReportCardProps> = ({
       </div>
 
       {/* Recommended Triage Banner */}
-      <div className="p-3 rounded-2xl bg-amber-500/15 dark:bg-amber-950/30 border border-amber-300/70 dark:border-amber-700/50 mb-3 flex items-center justify-between gap-2">
+      <div className="mt-4 p-4 neumo-inset flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div className="flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-xl bg-amber-500 text-slate-950 flex items-center justify-center font-bold shrink-0 shadow-xs">
             <Scissors className="w-4 h-4" />

@@ -47,7 +47,7 @@ export const MetricGaugesCard: React.FC<MetricGaugesCardProps> = ({
   return (
     <div 
       id="diagnostic-metric-gauges-card"
-      className="p-4 milk-card flex flex-col justify-between transition-all duration-300 relative overflow-hidden"
+      className="p-4 neumo-card h-full flex flex-col transition-all duration-300 relative overflow-hidden"
     >
       {/* Card Header */}
       <div className="flex items-center justify-between gap-2 mb-3">
@@ -69,7 +69,7 @@ export const MetricGaugesCard: React.FC<MetricGaugesCardProps> = ({
       </div>
 
       {/* Radial Confidence Gauge Section */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-3.5 rounded-2xl bg-white/60 dark:bg-slate-800/70 border border-white/80 dark:border-slate-700/80 shadow-xs">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-3.5 rounded-2xl neumo-convex border border-white/80 dark:border-slate-700/80 shadow-xs">
         {/* SVG Radial Gauge */}
         <div className="relative w-36 h-36 flex items-center justify-center shrink-0">
           <svg className="w-full h-full transform -rotate-90" viewBox="0 0 160 160">
@@ -118,7 +118,7 @@ export const MetricGaugesCard: React.FC<MetricGaugesCardProps> = ({
 
         {/* Gauge Insights Column */}
         <div className="flex-1 min-w-0 space-y-2 text-left">
-          <div className="p-2 rounded-xl bg-white/70 dark:bg-slate-800/90 border border-slate-200/60 dark:border-slate-700/80">
+          <div className="p-2 rounded-xl neumo-inset border border-slate-200/60 dark:border-slate-700/80">
             <div className="flex items-center justify-between text-[11px] font-semibold text-slate-700 dark:text-slate-200">
               <span>Classifier Threshold:</span>
               <span className="font-mono text-amber-700 dark:text-amber-400">&gt; 90.0%</span>
@@ -128,7 +128,7 @@ export const MetricGaugesCard: React.FC<MetricGaugesCardProps> = ({
             </p>
           </div>
 
-          <div className="flex items-center justify-between text-[11px] px-2 py-1.5 rounded-xl bg-slate-50/80 dark:bg-slate-900/60 border border-slate-200/50 dark:border-slate-700/60 font-mono">
+          <div className="w-full flex items-center justify-between p-3 neumo-inset font-mono">
             <span className="text-slate-500 dark:text-slate-400">Confidence Band:</span>
             <span className="font-bold text-slate-800 dark:text-slate-200">
               {isBreached ? '[18.2% - 28.5%]' : '[92.8% - 95.6%]'}

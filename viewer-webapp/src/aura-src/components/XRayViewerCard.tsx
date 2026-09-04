@@ -12,7 +12,7 @@ import {
   Sparkles,
   UploadCloud
 } from 'lucide-react';
-import { DicomScan } from '../types';
+import type { DicomScan } from '../types';
 
 interface XRayViewerCardProps {
   scan: DicomScan;
@@ -37,7 +37,7 @@ export const XRayViewerCard: React.FC<XRayViewerCardProps> = ({
   return (
     <div 
       id="fracture-localization-card"
-      className="p-4 milk-card relative flex flex-col transition-all duration-300 overflow-hidden"
+      className="p-4 neumo-card relative flex flex-col transition-all duration-300 overflow-hidden"
     >
       {/* Header & Status */}
       <div className="flex items-center justify-between gap-2 mb-2.5">
@@ -393,7 +393,7 @@ export const XRayViewerCard: React.FC<XRayViewerCardProps> = ({
         </div>
 
         {/* Bottom Banner on Canvas */}
-        <div className="absolute bottom-2 inset-x-2 px-2.5 py-1.5 rounded-xl bg-slate-950/70 backdrop-blur-md border border-white/15 flex items-center justify-between text-[11px] text-white/90">
+        <div className="absolute bottom-2 inset-x-2 px-2.5 py-1.5 neumo-inset flex items-center justify-between text-[11px] text-white/90">
           <span className="font-semibold tracking-wide text-amber-300 flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
             [AI DETECT: {loc.label} — {loc.confidence}% Confidence]
@@ -410,7 +410,7 @@ export const XRayViewerCard: React.FC<XRayViewerCardProps> = ({
         <button
           id="btn-toggle-ai-overlay"
           onClick={() => setShowAiOverlay(!showAiOverlay)}
-          className={`px-3 py-1.5 rounded-full text-xs font-medium flex items-center gap-1.5 transition-all glass-pill active:scale-95 ${
+          className={`px-3 py-1.5 neumo-btn text-xs font-medium flex items-center gap-1.5 ${
             showAiOverlay
               ? 'bg-amber-500/20 dark:bg-amber-500/25 text-amber-900 dark:text-amber-300 border-amber-300 dark:border-amber-600/70 font-semibold ring-1 ring-amber-400/40'
               : 'text-slate-600 dark:text-slate-300 hover:dark:text-white'
@@ -425,7 +425,7 @@ export const XRayViewerCard: React.FC<XRayViewerCardProps> = ({
         <button
           id="btn-invert-grayscale"
           onClick={() => setInvertGrayscale(!invertGrayscale)}
-          className={`px-3 py-1.5 rounded-full text-xs font-medium flex items-center gap-1.5 transition-all glass-pill active:scale-95 ${
+          className={`px-3 py-1.5 neumo-btn text-xs font-medium flex items-center gap-1.5 ${
             invertGrayscale
               ? 'bg-sky-500/20 dark:bg-sky-500/25 text-sky-900 dark:text-sky-300 border-sky-300 dark:border-sky-600/70 font-semibold ring-1 ring-sky-400/40'
               : 'text-slate-600 dark:text-slate-300 hover:dark:text-white'
@@ -439,7 +439,7 @@ export const XRayViewerCard: React.FC<XRayViewerCardProps> = ({
         <button
           id="btn-inspect-lsb"
           onClick={() => setInspectLsbWatermark(!inspectLsbWatermark)}
-          className={`px-3 py-1.5 rounded-full text-xs font-medium flex items-center gap-1.5 transition-all glass-pill active:scale-95 ${
+          className={`px-3 py-1.5 neumo-btn text-xs font-medium flex items-center gap-1.5 ${
             inspectLsbWatermark
               ? 'bg-emerald-500/20 dark:bg-emerald-500/25 text-emerald-900 dark:text-emerald-300 border-emerald-300 dark:border-emerald-600/70 font-semibold ring-1 ring-emerald-400/40'
               : 'text-slate-600 dark:text-slate-300 hover:dark:text-white'
@@ -452,7 +452,7 @@ export const XRayViewerCard: React.FC<XRayViewerCardProps> = ({
         {onOpenUploadScan && (
           <button
             onClick={onOpenUploadScan}
-            className="px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 transition-all glass-pill bg-amber-500/15 hover:bg-amber-500/25 dark:bg-amber-500/20 dark:hover:bg-amber-500/30 text-amber-900 dark:text-amber-300 border-amber-300/80 dark:border-amber-500/40 active:scale-95"
+            className="px-3 py-1.5 neumo-btn text-xs font-semibold flex items-center gap-1.5 text-amber-600 dark:text-amber-400"
           >
             <UploadCloud className="w-3.5 h-3.5 text-amber-700 dark:text-amber-400" />
             <span>Upload / Replace Image</span>
