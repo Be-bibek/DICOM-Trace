@@ -7,7 +7,8 @@ import { MetricGaugesCard } from '../aura-src/components/MetricGaugesCard';
 import { AiClinicalReportCard } from '../aura-src/components/AiClinicalReportCard';
 import { ConsensusDagCard } from '../aura-src/components/ConsensusDagCard';
 import { XRayViewerCard } from '../aura-src/components/XRayViewerCard';
-import { LeftDock, LeftNavTab } from '../aura-src/components/LeftDock';
+import { LeftDock } from '../aura-src/components/LeftDock';
+import type { LeftNavTab } from '../aura-src/components/LeftDock';
 import { TopNavCapsule } from '../aura-src/components/TopNavCapsule';
 import { OverviewView } from '../aura-src/components/OverviewView';
 import { ClinicalReportsView } from '../aura-src/components/ClinicalReportsView';
@@ -18,7 +19,7 @@ import {
   INITIAL_HARDWARE_TELEMETRY, 
   INITIAL_DAG_NODES,
   USER_PROFILES,
-  MOCK_SCANS
+  ALTERNATIVE_SCANS
 } from '../aura-src/data/clinicalData';
 
 interface PatientWorkspaceProps {
@@ -176,7 +177,7 @@ export const PatientWorkspace: React.FC<PatientWorkspaceProps> = ({ currentPerso
         return (
           <OverviewView
             activeScan={currentScan}
-            availableScans={MOCK_SCANS}
+            availableScans={ALTERNATIVE_SCANS}
             onSelectScan={setCurrentScan}
             onNavigateTab={(tab: any) => setActiveTab(tab === 'diagnostics' ? 'scanner' : tab)}
             onOpenUpload={() => fileInputRef.current?.click()}
@@ -274,7 +275,7 @@ export const PatientWorkspace: React.FC<PatientWorkspaceProps> = ({ currentPerso
         return (
           <StudiesArchiveView
             activeScan={currentScan}
-            availableScans={MOCK_SCANS}
+            availableScans={ALTERNATIVE_SCANS}
             onSelectScan={(scan) => {
               setCurrentScan(scan);
               setActiveTab('scanner');
@@ -330,7 +331,7 @@ export const PatientWorkspace: React.FC<PatientWorkspaceProps> = ({ currentPerso
             availableUsers={[activeUser, dummyDoctor]}
             onSelectUser={() => {}}
             activeScan={currentScan}
-            availableScans={MOCK_SCANS}
+            availableScans={ALTERNATIVE_SCANS}
             onSelectScan={setCurrentScan}
             isBreached={isBreached}
             ambientWarmth="daylight"
