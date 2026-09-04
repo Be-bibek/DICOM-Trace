@@ -69,18 +69,17 @@ export const MetricGaugesCard: React.FC<MetricGaugesCardProps> = ({
       </div>
 
       {/* Radial Confidence Gauge Section */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-3.5 rounded-2xl neumo-convex border border-white/80 dark:border-slate-700/80 shadow-xs">
-        {/* SVG Radial Gauge */}
-        <div className="relative w-36 h-36 flex items-center justify-center shrink-0">
-          <svg className="w-full h-full transform -rotate-90" viewBox="0 0 160 160">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-6 p-4 rounded-3xl neumo-card-subtle">
+        {/* SVG Radial Gauge wrapped in Neumorphic Circular Well */}
+        <div className="relative w-36 h-36 flex items-center justify-center shrink-0 rounded-full neumo-inset border border-white/40 dark:border-slate-700/50">
+          <svg className="w-[85%] h-[85%] transform -rotate-90 drop-shadow-sm" viewBox="0 0 160 160">
             {/* Background Track */}
             <circle
               cx="80"
               cy="80"
               r={radius}
-              stroke="rgba(226, 232, 240, 0.8)"
-              className="dark:stroke-slate-700"
-              strokeWidth="12"
+              stroke="transparent"
+              strokeWidth="14"
               fill="transparent"
             />
             {/* Progress Arc */}
@@ -89,7 +88,7 @@ export const MetricGaugesCard: React.FC<MetricGaugesCardProps> = ({
               cy="80"
               r={radius}
               stroke={isBreached ? "#f43f5e" : "url(#confidenceGradient)"}
-              strokeWidth="12"
+              strokeWidth="14"
               strokeDasharray={circumference}
               strokeDashoffset={strokeDashoffset}
               strokeLinecap="round"
@@ -98,20 +97,16 @@ export const MetricGaugesCard: React.FC<MetricGaugesCardProps> = ({
             />
             <defs>
               <linearGradient id="confidenceGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#f59e0b" />
-                <stop offset="60%" stopColor="#10b981" />
-                <stop offset="100%" stopColor="#0ea5e9" />
+                <stop offset="0%" stopColor="#818cf8" />
+                <stop offset="100%" stopColor="#3730a3" />
               </linearGradient>
             </defs>
           </svg>
 
           {/* Center Text */}
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-            <span className="text-2xl font-black tracking-tight text-slate-900 dark:text-white font-mono">
-              {confidence.toFixed(1)}%
-            </span>
-            <span className="text-[10px] uppercase font-bold text-slate-500 dark:text-slate-400 tracking-wider">
-              {isBreached ? 'Compromised' : 'AI Confidence'}
+            <span className="text-2xl font-black tracking-tight text-slate-800 dark:text-white font-mono drop-shadow-sm">
+              {confidence.toFixed(0)}
             </span>
           </div>
         </div>

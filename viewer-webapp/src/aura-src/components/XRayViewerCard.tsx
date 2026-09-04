@@ -405,59 +405,63 @@ export const XRayViewerCard: React.FC<XRayViewerCardProps> = ({
       </div>
 
       {/* Floating Tactical Controls for Radiograph */}
-      <div className="mt-3 flex flex-wrap items-center gap-2">
-        {/* Toggle AI Overlay */}
-        <button
-          id="btn-toggle-ai-overlay"
-          onClick={() => setShowAiOverlay(!showAiOverlay)}
-          className={`px-3 py-1.5 neumo-btn text-xs font-medium flex items-center gap-1.5 ${
-            showAiOverlay
-              ? 'bg-amber-500/20 dark:bg-amber-500/25 text-amber-900 dark:text-amber-300 border-amber-300 dark:border-amber-600/70 font-semibold ring-1 ring-amber-400/40'
-              : 'text-slate-600 dark:text-slate-300 hover:dark:text-white'
-          }`}
-        >
-          <Eye className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
-          <span>Toggle AI Overlay</span>
-          {showAiOverlay && <Check className="w-3 h-3 text-amber-700 dark:text-amber-300 ml-0.5" />}
-        </button>
+      <div className="mt-4 flex flex-col gap-3 p-4 neumo-card-subtle">
+        <div className="flex items-center justify-between">
+          <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Tactile Controls</h4>
+          {onOpenUploadScan && (
+            <button
+              onClick={onOpenUploadScan}
+              className="px-3 py-1.5 neumo-btn text-xs font-bold text-slate-700 dark:text-slate-200"
+            >
+              <UploadCloud className="w-3.5 h-3.5 text-amber-500 mr-1.5" />
+              Upload / Replace
+            </button>
+          )}
+        </div>
+        
+        <div className="flex flex-wrap gap-6 pt-1">
+          {/* Toggle AI Overlay */}
+          <label className="flex items-center gap-3 cursor-pointer group">
+            <div className={`neumo-switch-track ${showAiOverlay ? 'neumo-switch-active' : ''}`}>
+              <div className="neumo-switch-thumb">
+                {showAiOverlay && <div className="w-2.5 h-2.5 rounded-full bg-amber-500" />}
+              </div>
+            </div>
+            <div className="flex items-center gap-1.5 text-xs font-bold text-slate-700 dark:text-slate-300">
+              <Eye className="w-3.5 h-3.5 text-amber-500" />
+              AI Overlay
+            </div>
+            <input type="checkbox" className="hidden" checked={showAiOverlay} onChange={() => setShowAiOverlay(!showAiOverlay)} />
+          </label>
 
-        {/* Invert Grayscale */}
-        <button
-          id="btn-invert-grayscale"
-          onClick={() => setInvertGrayscale(!invertGrayscale)}
-          className={`px-3 py-1.5 neumo-btn text-xs font-medium flex items-center gap-1.5 ${
-            invertGrayscale
-              ? 'bg-sky-500/20 dark:bg-sky-500/25 text-sky-900 dark:text-sky-300 border-sky-300 dark:border-sky-600/70 font-semibold ring-1 ring-sky-400/40'
-              : 'text-slate-600 dark:text-slate-300 hover:dark:text-white'
-          }`}
-        >
-          <Layers className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
-          <span>Invert Grayscale</span>
-        </button>
+          {/* Invert Grayscale */}
+          <label className="flex items-center gap-3 cursor-pointer group">
+            <div className={`neumo-switch-track ${invertGrayscale ? 'neumo-switch-active' : ''}`}>
+              <div className="neumo-switch-thumb">
+                {invertGrayscale && <div className="w-2.5 h-2.5 rounded-full bg-sky-500" />}
+              </div>
+            </div>
+            <div className="flex items-center gap-1.5 text-xs font-bold text-slate-700 dark:text-slate-300">
+              <Layers className="w-3.5 h-3.5 text-sky-500" />
+              Invert Grayscale
+            </div>
+            <input type="checkbox" className="hidden" checked={invertGrayscale} onChange={() => setInvertGrayscale(!invertGrayscale)} />
+          </label>
 
-        {/* Inspect LSB Watermark */}
-        <button
-          id="btn-inspect-lsb"
-          onClick={() => setInspectLsbWatermark(!inspectLsbWatermark)}
-          className={`px-3 py-1.5 neumo-btn text-xs font-medium flex items-center gap-1.5 ${
-            inspectLsbWatermark
-              ? 'bg-emerald-500/20 dark:bg-emerald-500/25 text-emerald-900 dark:text-emerald-300 border-emerald-300 dark:border-emerald-600/70 font-semibold ring-1 ring-emerald-400/40'
-              : 'text-slate-600 dark:text-slate-300 hover:dark:text-white'
-          }`}
-        >
-          <Binary className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-          <span>Inspect LSB Watermark</span>
-        </button>
-
-        {onOpenUploadScan && (
-          <button
-            onClick={onOpenUploadScan}
-            className="px-3 py-1.5 neumo-btn text-xs font-semibold flex items-center gap-1.5 text-amber-600 dark:text-amber-400"
-          >
-            <UploadCloud className="w-3.5 h-3.5 text-amber-700 dark:text-amber-400" />
-            <span>Upload / Replace Image</span>
-          </button>
-        )}
+          {/* Inspect LSB Watermark */}
+          <label className="flex items-center gap-3 cursor-pointer group">
+            <div className={`neumo-switch-track ${inspectLsbWatermark ? 'neumo-switch-active' : ''}`}>
+              <div className="neumo-switch-thumb">
+                {inspectLsbWatermark && <div className="w-2.5 h-2.5 rounded-full bg-emerald-500" />}
+              </div>
+            </div>
+            <div className="flex items-center gap-1.5 text-xs font-bold text-slate-700 dark:text-slate-300">
+              <Binary className="w-3.5 h-3.5 text-emerald-500" />
+              LSB Watermark
+            </div>
+            <input type="checkbox" className="hidden" checked={inspectLsbWatermark} onChange={() => setInspectLsbWatermark(!inspectLsbWatermark)} />
+          </label>
+        </div>
       </div>
     </div>
   );
