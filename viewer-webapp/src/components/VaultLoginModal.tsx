@@ -12,7 +12,7 @@ import {
   ChevronRight,
   Sliders
 } from 'lucide-react';
-import { Persona } from '../types';
+import type { Persona } from '../types';
 import { CLINICAL_PERSONAS } from '../data/personas';
 import { ThemeToggle } from './ThemeToggle';
 

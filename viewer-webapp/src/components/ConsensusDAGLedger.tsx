@@ -11,7 +11,7 @@ import {
   Lock,
   FileText
 } from 'lucide-react';
-import { DAGNode, Persona, ConsensusDecision } from '../types';
+import type { DAGNode, Persona, ConsensusDecision } from '../types';
 
 interface ConsensusDAGLedgerProps {
   currentPersona: Persona;

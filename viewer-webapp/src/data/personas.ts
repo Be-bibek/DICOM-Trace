@@ -1,4 +1,4 @@
-import { Persona } from '../types';
+import type { Persona } from '../types';
 
 export const CLINICAL_PERSONAS: Persona[] = [
   {

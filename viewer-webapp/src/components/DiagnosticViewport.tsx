@@ -13,28 +13,37 @@ import {
   Cpu,
   Activity,
   Sliders,
-  Sparkles
+  Sparkles,
+  DownloadCloud
 } from 'lucide-react';
 import { PATIENT_RECORD } from '../data/personas';
+import { unwrap_session_key } from '../../pkg/core_rs';
 
 interface DiagnosticViewportProps {
   isTampered: boolean;
   onToggleTamper: () => void;
   isMemoryDumped: boolean;
   onRestoreMemory?: () => void;
+  currentPersona?: any;
 }
 
 export const DiagnosticViewport: React.FC<DiagnosticViewportProps> = ({
   isTampered,
   onToggleTamper,
   isMemoryDumped,
-  onRestoreMemory
+  onRestoreMemory,
+  currentPersona
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [showAIMarkup, setShowAIMarkup] = useState(true);
   const [invertedGrayscale, setInvertedGrayscale] = useState(false);
   const [zoomLevel, setZoomLevel] = useState(1.0);
   const [rotationAngle, setRotationAngle] = useState(0);
+
+  const [isFetching, setIsFetching] = useState(false);
+  const [fetchedImageSrc, setFetchedImageSrc] = useState<string | null>(null);
+  const [fetchedImageData, setFetchedImageData] = useState<ImageData | null>(null);
+  const [payloadSize, setPayloadSize] = useState(0);
 
   // Render high-contrast bone radiograph onto canvas
   useEffect(() => {
@@ -82,6 +91,36 @@ export const DiagnosticViewport: React.FC<DiagnosticViewportProps> = ({
     ctx.scale(zoomLevel, zoomLevel);
     ctx.rotate((rotationAngle * Math.PI) / 180);
     ctx.translate(-width / 2, -height / 2);
+
+    if (fetchedImageSrc) {
+      const img = new Image();
+      img.src = fetchedImageSrc;
+      img.onload = () => {
+        if (invertedGrayscale) {
+            ctx.filter = 'invert(100%)';
+        }
+        ctx.drawImage(img, 0, 0, width, height);
+        ctx.filter = 'none';
+      };
+      ctx.restore();
+      return;
+    } else if (fetchedImageData) {
+       // A dynamic Image uploaded (256x256)
+       // Draw it centered
+       const tempCanvas = document.createElement('canvas');
+       tempCanvas.width = 256;
+       tempCanvas.height = 256;
+       const tempCtx = tempCanvas.getContext('2d')!;
+       tempCtx.putImageData(fetchedImageData, 0, 0);
+       
+       if (invertedGrayscale) {
+           ctx.filter = 'invert(100%)';
+       }
+       ctx.drawImage(tempCanvas, width/2 - 128, height/2 - 128, 256, 256);
+       ctx.filter = 'none';
+       ctx.restore();
+       return;
+    }
 
     // Soft tissue silhouette
     const softTissueColor = invertedGrayscale ? 'rgba(0, 0, 0, 0.08)' : 'rgba(255, 255, 255, 0.04)';
@@ -192,6 +231,59 @@ export const DiagnosticViewport: React.FC<DiagnosticViewportProps> = ({
     setInvertedGrayscale(false);
   };
 
+  const handleFetchScan = async () => {
+    if (!currentPersona) return;
+    try {
+      setIsFetching(true);
+      const res = await fetch(`http://127.0.0.1:8000/fetch/latest?recipient_id=${currentPersona.id}`);
+      if (!res.ok) throw new Error("No pending payloads for you.");
+      const data = await res.json();
+      
+      const wrappedKeyArray = new Uint8Array(data.wrapped_key.match(/.{1,2}/g)!.map((byte: string) => parseInt(byte, 16)));
+      
+      const unwrappedSessionKey = unwrap_session_key(data.ephemeral_sender_pubkey, currentPersona.privateKeyPreview, wrappedKeyArray);
+      
+      const nonce = Uint8Array.from(atob(data.envelope.nonce), c => c.charCodeAt(0));
+      const ciphertext = Uint8Array.from(atob(data.envelope.ciphertext), c => c.charCodeAt(0));
+      const tag = Uint8Array.from(atob(data.envelope.tag), c => c.charCodeAt(0));
+      
+      const encryptedData = new Uint8Array(ciphertext.length + tag.length);
+      encryptedData.set(ciphertext);
+      encryptedData.set(tag, ciphertext.length);
+
+      const cryptoKey = await crypto.subtle.importKey(
+          "raw", unwrappedSessionKey, { name: "AES-GCM" }, false, ["decrypt"]
+      );
+
+      const decryptedBuffer = await crypto.subtle.decrypt(
+          { name: "AES-GCM", iv: nonce }, cryptoKey, encryptedData
+      );
+      
+      const decryptedBytes = new Uint8Array(decryptedBuffer);
+      const len = decryptedBytes.length;
+      setPayloadSize(len);
+
+      if (len === 39206) {
+          setFetchedImageSrc('/ct_preview.png');
+          setFetchedImageData(null);
+      } else if (len === 9830) {
+          setFetchedImageSrc('/mr_preview.png');
+          setFetchedImageData(null);
+      } else if (len === 256 * 256 * 4) {
+          setFetchedImageData(new ImageData(new Uint8ClampedArray(decryptedBytes.buffer), 256, 256));
+          setFetchedImageSrc(null);
+      } else {
+          console.log("Raw payload decrypted successfully.", len);
+      }
+
+    } catch (e: any) {
+      console.error(e.message);
+      alert(e.message);
+    } finally {
+      setIsFetching(false);
+    }
+  };
+
   return (
     <div 
       id="panel-diagnostic-viewport"
@@ -213,30 +305,41 @@ export const DiagnosticViewport: React.FC<DiagnosticViewportProps> = ({
           </div>
         </div>
 
-        {/* Tamper Simulation Action Button (Neumorphic) */}
-        <button
-          type="button"
-          id="btn-simulate-bit-flip"
-          onClick={onToggleTamper}
-          className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold transition-all active:scale-95 ${
-            isTampered 
-              ? 'neumo-inset text-rose-700 dark:text-rose-400' 
-              : 'neumo-btn text-slate-800 dark:text-slate-200 hover:text-rose-700'
-          }`}
-        >
-          {isTampered ? (
-            <>
-              <CheckCircle className="w-3.5 h-3.5 text-emerald-600" />
-              <span>Restore Cryptographic State</span>
-            </>
-          ) : (
-            <>
-              <ShieldAlert className="w-3.5 h-3.5 text-rose-600" />
-              <span>Simulate Bit-Flip Tamper</span>
-            </>
-          )}
-        </button>
-      </div>
+          {/* Fetch Scan Button */}
+          <button
+            type="button"
+            onClick={handleFetchScan}
+            disabled={isFetching}
+            className="mr-2 flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold transition-all active:scale-95 neumo-btn text-indigo-700 dark:text-indigo-400 hover:text-indigo-900 disabled:opacity-50"
+          >
+            <DownloadCloud className={`w-3.5 h-3.5 ${isFetching ? 'animate-bounce' : ''}`} />
+            <span>Fetch Pending Scan</span>
+          </button>
+
+          {/* Tamper Simulation Action Button (Neumorphic) */}
+          <button
+            type="button"
+            id="btn-simulate-bit-flip"
+            onClick={onToggleTamper}
+            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold transition-all active:scale-95 ${
+              isTampered 
+                ? 'neumo-inset text-rose-700 dark:text-rose-400' 
+                : 'neumo-btn text-slate-800 dark:text-slate-200 hover:text-rose-700'
+            }`}
+          >
+            {isTampered ? (
+              <>
+                <CheckCircle className="w-3.5 h-3.5 text-emerald-600" />
+                <span>Restore Cryptographic State</span>
+              </>
+            ) : (
+              <>
+                <ShieldAlert className="w-3.5 h-3.5 text-rose-600" />
+                <span>Simulate Bit-Flip Tamper</span>
+              </>
+            )}
+          </button>
+        </div>
 
       {/* Tamper Breach Alert Banner */}
       {isTampered && (

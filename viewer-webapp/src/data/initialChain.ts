@@ -1,4 +1,4 @@
-import { DAGNode } from '../types';
+import type { DAGNode } from '../types';
 
 export const INITIAL_DAG_CHAIN: DAGNode[] = [
   {

@@ -8,7 +8,7 @@ import {
   AlertTriangle,
   Sparkles
 } from 'lucide-react';
-import { Persona } from '../types';
+import type { Persona } from '../types';
 import { ThemeToggle } from './ThemeToggle';
 
 interface DynamicIslandTelemetryProps {
