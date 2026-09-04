@@ -56,7 +56,7 @@ export const LeftDock: React.FC<LeftDockProps> = ({
     <aside 
       id="left-vertical-dock"
       aria-label="Website Navigation Sidebar"
-      className="w-full md:w-60 lg:w-64 flex flex-col justify-between p-3.5 rounded-3xl milk-card bg-white/80 dark:bg-slate-900/85 backdrop-blur-2xl border border-white dark:border-slate-800 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.4)] z-30 transition-all duration-300"
+      className="w-full md:w-60 lg:w-64 flex flex-col justify-between p-3.5 rounded-3xl neumo-card z-30 transition-all duration-300"
     >
       {/* Top Brand Block */}
       <div>

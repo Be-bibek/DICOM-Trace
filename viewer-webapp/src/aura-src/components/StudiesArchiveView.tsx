@@ -45,7 +45,7 @@ export const StudiesArchiveView: React.FC<StudiesArchiveViewProps> = ({
   return (
     <div id="studies-archive-view" className="space-y-4 animate-in fade-in duration-300">
       {/* Top Controls Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-3 p-4 rounded-3xl milk-card border border-white/80 dark:border-slate-800">
+      <div className="flex flex-wrap items-center justify-between gap-3 p-4 rounded-3xl neumo-card border border-white/80 dark:border-slate-800">
         <div>
           <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <FolderArchive className="w-5 h-5 text-amber-600 dark:text-amber-400" />
@@ -88,7 +88,7 @@ export const StudiesArchiveView: React.FC<StudiesArchiveViewProps> = ({
           return (
             <div
               key={scan.scanId}
-              className={`p-5 rounded-3xl milk-card border transition-all duration-300 flex flex-col justify-between relative group ${
+              className={`p-5 rounded-3xl neumo-card border transition-all duration-300 flex flex-col justify-between relative group ${
                 isActive
                   ? 'border-amber-400/90 ring-2 ring-amber-400/40 bg-white/90 dark:bg-slate-800/95 dark:border-amber-500/80 shadow-md'
                   : 'border-white/80 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 bg-white/70 dark:bg-slate-850/80 hover:bg-white/85 dark:hover:bg-slate-800/90 shadow-xs'

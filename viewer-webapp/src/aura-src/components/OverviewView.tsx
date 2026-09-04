@@ -101,7 +101,7 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
-          className="lg:col-span-5 relative p-6 rounded-3xl milk-card overflow-hidden flex flex-col justify-between border border-white/80 dark:border-slate-800 dark:bg-slate-900/85 shadow-[0_12px_32px_rgba(0,0,0,0.06)] dark:shadow-[0_12px_32px_rgba(0,0,0,0.4)] group"
+          className="lg:col-span-5 relative p-6 rounded-3xl neumo-card overflow-hidden flex flex-col justify-between border border-white/80 dark:border-slate-800 dark:bg-slate-900/85 shadow-[0_12px_32px_rgba(0,0,0,0.06)] dark:shadow-[0_12px_32px_rgba(0,0,0,0.4)] group"
         >
           {/* Holographic Iridescent Shimmer */}
           <div className="absolute inset-0 bg-gradient-to-tr from-amber-200/25 via-sky-200/20 to-purple-200/25 dark:from-amber-950/30 dark:via-sky-950/20 dark:to-purple-950/30 opacity-70 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
@@ -175,7 +175,7 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.05 }}
-            className="p-5 rounded-3xl milk-card flex flex-col justify-between border border-white/80 dark:border-slate-800 dark:bg-slate-900/85 shadow-xs"
+            className="p-5 rounded-3xl neumo-card flex flex-col justify-between border border-white/80 dark:border-slate-800 dark:bg-slate-900/85 shadow-xs"
           >
             <div>
               <p className="text-xs font-bold text-slate-500 dark:text-slate-400">AI Diagnostic Confidence</p>
@@ -197,7 +197,7 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.1 }}
-            className="p-5 rounded-3xl milk-card flex flex-col justify-between border border-white/80 dark:border-slate-800 dark:bg-slate-900/85 shadow-xs"
+            className="p-5 rounded-3xl neumo-card flex flex-col justify-between border border-white/80 dark:border-slate-800 dark:bg-slate-900/85 shadow-xs"
           >
             <div>
               <p className="text-xs font-bold text-slate-500 dark:text-slate-400">Enclave Proof Latency</p>
@@ -219,7 +219,7 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.15 }}
-            className="p-5 rounded-3xl milk-card flex flex-col justify-between border border-white/80 dark:border-slate-800 dark:bg-slate-900/85 shadow-xs"
+            className="p-5 rounded-3xl neumo-card flex flex-col justify-between border border-white/80 dark:border-slate-800 dark:bg-slate-900/85 shadow-xs"
           >
             <div>
               <p className="text-xs font-bold text-slate-500 dark:text-slate-400">Zero-Trust PHI Leak</p>
@@ -240,7 +240,7 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
       {/* Middle Section: Consensus Velocity Curve & Department Volumes */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
         {/* Consensus Velocity Multi-Line Chart */}
-        <div className="lg:col-span-8 p-5 rounded-3xl milk-card border border-white/80 dark:border-slate-800 dark:bg-slate-900/85 space-y-3">
+        <div className="lg:col-span-8 p-5 rounded-3xl neumo-card border border-white/80 dark:border-slate-800 dark:bg-slate-900/85 space-y-3">
           <div className="flex items-center justify-between">
             <div>
               <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
@@ -320,7 +320,7 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
         </div>
 
         {/* Department Volume Bar Chart */}
-        <div className="lg:col-span-4 p-5 rounded-3xl milk-card border border-white/80 dark:border-slate-800 dark:bg-slate-900/85 flex flex-col justify-between">
+        <div className="lg:col-span-4 p-5 rounded-3xl neumo-card border border-white/80 dark:border-slate-800 dark:bg-slate-900/85 flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between">
               <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
@@ -358,7 +358,7 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
       </div>
 
       {/* Bottom Section: Recent Studies & Consensus Records Table */}
-      <div className="p-5 rounded-3xl milk-card border border-white/80 dark:border-slate-800 dark:bg-slate-900/85 space-y-4">
+      <div className="p-5 rounded-3xl neumo-card border border-white/80 dark:border-slate-800 dark:bg-slate-900/85 space-y-4">
         {/* Table Header & Quick Action Buttons */}
         <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-200/60 dark:border-slate-800">
           <div className="flex items-center gap-2">

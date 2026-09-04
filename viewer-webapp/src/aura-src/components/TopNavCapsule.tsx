@@ -85,7 +85,7 @@ export const TopNavCapsule: React.FC<TopNavCapsuleProps> = ({
     <header 
       id="top-floating-navigation-capsule"
       aria-label="Website Header Navigation"
-      className="w-full flex flex-wrap items-center justify-between gap-3 px-4 py-2.5 rounded-3xl milk-card bg-white/85 dark:bg-slate-900/85 backdrop-blur-2xl border border-white dark:border-slate-800 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.4)] z-40 transition-all"
+      className="w-full flex flex-wrap items-center justify-between gap-3 px-4 py-2.5 rounded-3xl neumo-card-subtle z-40 transition-all"
     >
       {/* 1. Global Search Bar */}
       <div className="flex-1 max-w-md min-w-[200px]">
@@ -96,7 +96,7 @@ export const TopNavCapsule: React.FC<TopNavCapsuleProps> = ({
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search patient name, MRN, scan accession, or hash..."
-            className="w-full pl-9 pr-4 py-2 rounded-2xl bg-slate-100/80 dark:bg-slate-800/80 hover:bg-slate-100 dark:hover:bg-slate-800 focus:bg-white dark:focus:bg-slate-900 border border-slate-200/80 dark:border-slate-700/80 focus:border-amber-500 dark:focus:border-amber-400 text-xs text-slate-800 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 outline-none transition-all font-sans"
+            className="w-full pl-9 pr-4 py-2 rounded-2xl neumo-inset bg-transparent border-none focus:outline-none focus:ring-1 focus:ring-amber-500/50 text-xs text-slate-800 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 transition-all font-sans"
           />
         </div>
       </div>

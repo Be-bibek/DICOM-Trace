@@ -40,7 +40,7 @@ export const ClinicalReportsView: React.FC<ClinicalReportsViewProps> = ({
   return (
     <div id="clinical-reports-view" className="space-y-4 max-w-4xl mx-auto animate-in fade-in duration-300">
       {/* Top Action Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-3 p-4 rounded-3xl milk-card border border-white/80 dark:border-slate-800">
+      <div className="flex flex-wrap items-center justify-between gap-3 p-4 rounded-3xl neumo-card border border-white/80 dark:border-slate-800">
         <div>
           <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <FileText className="w-5 h-5 text-amber-600 dark:text-amber-400" />
