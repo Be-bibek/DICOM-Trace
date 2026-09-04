@@ -10,7 +10,7 @@ import {
   RefreshCw,
   HardDrive
 } from 'lucide-react';
-import { HardwareTelemetry } from '../types';
+import type { HardwareTelemetry } from '../types';
 
 interface TelemetryDetailViewProps {
   telemetry: HardwareTelemetry;

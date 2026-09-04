@@ -12,7 +12,7 @@ import {
   Hash
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { DicomScan } from '../types';
+import type { DicomScan } from '../types';
 
 interface UploadScanModalProps {
   isOpen: boolean;

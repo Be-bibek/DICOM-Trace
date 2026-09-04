@@ -20,7 +20,7 @@ import {
   ScanLine
 } from 'lucide-react';
 import { motion } from 'motion/react';
-import { DicomScan, DagNode, UserProfile } from '../types';
+import type { DicomScan, DagNode, UserProfile } from '../types';
 
 interface OverviewViewProps {
   activeScan: DicomScan;

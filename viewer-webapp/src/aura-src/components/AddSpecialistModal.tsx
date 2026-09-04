@@ -9,7 +9,7 @@ import {
   Send 
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { UserProfile } from '../types';
+import type { UserProfile } from '../types';
 
 interface AddSpecialistModalProps {
   isOpen: boolean;

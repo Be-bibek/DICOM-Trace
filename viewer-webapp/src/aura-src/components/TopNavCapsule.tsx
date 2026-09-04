@@ -17,7 +17,7 @@ import {
   ShieldCheck
 } from 'lucide-react';
 import { motion } from 'motion/react';
-import { UserProfile, DicomScan } from '../types';
+import type { UserProfile, DicomScan } from '../types';
 
 interface TopNavCapsuleProps {
   currentUser: UserProfile;

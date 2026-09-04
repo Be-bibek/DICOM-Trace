@@ -13,7 +13,7 @@ import {
   Layers,
   FileCode
 } from 'lucide-react';
-import { DicomScan } from '../types';
+import type { DicomScan } from '../types';
 
 interface StudiesArchiveViewProps {
   scans: DicomScan[];

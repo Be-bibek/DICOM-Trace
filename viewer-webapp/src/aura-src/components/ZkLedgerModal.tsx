@@ -12,7 +12,7 @@ import {
   KeyRound
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ZkProofMetadata, DicomScan } from '../types';
+import type { ZkProofMetadata, DicomScan } from '../types';
 
 interface ZkLedgerModalProps {
   isOpen: boolean;

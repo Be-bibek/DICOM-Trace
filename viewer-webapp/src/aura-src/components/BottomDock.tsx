@@ -8,7 +8,7 @@ import {
   UserPlus,
   Sparkles
 } from 'lucide-react';
-import { DepartmentFilter } from '../types';
+import type { DepartmentFilter } from '../types';
 
 interface BottomDockProps {
   activeFilter: DepartmentFilter;

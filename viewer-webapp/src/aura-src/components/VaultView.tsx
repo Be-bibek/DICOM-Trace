@@ -10,7 +10,7 @@ import {
   Fingerprint,
   RefreshCw
 } from 'lucide-react';
-import { UserProfile, ZkProofMetadata } from '../types';
+import type { UserProfile, ZkProofMetadata } from '../types';
 
 interface VaultViewProps {
   users: UserProfile[];

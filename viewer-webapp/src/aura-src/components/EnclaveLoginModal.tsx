@@ -15,7 +15,7 @@ import {
   Stethoscope
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { UserProfile } from '../types';
+import type { UserProfile } from '../types';
 
 interface EnclaveLoginModalProps {
   isOpen: boolean;

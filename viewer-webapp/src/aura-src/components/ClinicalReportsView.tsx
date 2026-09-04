@@ -12,7 +12,7 @@ import {
   Copy,
   Check
 } from 'lucide-react';
-import { DicomScan, DagNode } from '../types';
+import type { DicomScan, DagNode } from '../types';
 
 interface ClinicalReportsViewProps {
   scan: DicomScan;

@@ -14,7 +14,7 @@ import {
   LogOut
 } from 'lucide-react';
 import { motion } from 'motion/react';
-import { UserProfile } from '../types';
+import type { UserProfile } from '../types';
 
 export type LeftNavTab = 
   | 'overview' 
