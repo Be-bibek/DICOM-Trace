@@ -91,7 +91,38 @@ Where:
 
 ### Module → Biomedical Role Mapping
 
+```mermaid
+graph TD
+    subgraph Hospital_Client["Hospital Workstation (Sender)"]
+        Scanner["MRI / CT Scanner"] --> |Raw DICOM| BEW["BEW Watermark Engine (WASM)"]
+        BEW --> |Watermarked DICOM| Enc["ECDH + AES-256-GCM (WASM)"]
+        Enc --> |Ciphertext| ZK["Groth16 ZK-SNARK Prover"]
+        ZK --> Proof["Cryptographic Proof (804 Bytes)"]
+        Enc --> Transmit["PACS Transport Layer"]
+    end
+
+    subgraph Verification_Oracle["Verification Authority (Server)"]
+        Transmit --> API["FastAPI Endpoint"]
+        Proof --> API
+        API --> V_Stage1["Structural Check (Header)"]
+        V_Stage1 --> V_Stage2["BEW Derivation & Constant-Time Match"]
+        V_Stage2 --> V_Stage3["Replay Detection (SQLite WAL)"]
+        V_Stage3 --> V_Stage4["Z-Score Entropy Check"]
+        V_Stage4 --> |Success| Consensus["Multi-Doctor Consensus DAG"]
+    end
+    
+    subgraph Security_Enclave["Security Watchdog"]
+        Wipe["ZeroizeOnDrop Memory Purge"]
+    end
+    
+    API -.-> |Hash Mismatch| Wipe
+    BEW -.-> |Corrupt Hash| Wipe
+
+    style Wipe fill:#ef4444,stroke:#7f1d1d,color:#fff
+    style Consensus fill:#10b981,stroke:#047857,color:#fff
 ```
+
+```text
 dicom-trace (Built on SentinelMark Core Engine)
 │
 ├── behavior  →  MRI Scanner Device Fingerprint
