@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+@layer utilities {
+  .visionos-bg {
+    background: radial-gradient(circle at 50% 20%, #fdfbf7 0%, #ebe3d5 60%, #d8cbba 100%);
+  }
+  .dark .visionos-bg,
+  :is(.dark .visionos-bg) {
+    background: radial-gradient(circle at 50% 20%, #0f172a 0%, #090d16 60%, #020617 100%);
+  }
+
+  .master-glass {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.45) 100%);
+    backdrop-filter: blur(32px);
+    -webkit-backdrop-filter: blur(32px);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    box-shadow: 
+      0 30px 70px -15px rgba(120, 100, 80, 0.15),
+      inset 0 1px 2px 0 rgba(255, 255, 255, 0.95);
+    border-radius: 36px;
+  }
+  .dark .master-glass,
+  :is(.dark .master-glass) {
+    background: linear-gradient(135deg, rgba(17, 24, 39, 0.82) 0%, rgba(15, 23, 42, 0.88) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 
+      0 30px 70px -15px rgba(0, 0, 0, 0.6),
+      inset 0 1px 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .milk-card {
+    background: rgba(255, 255, 255, 0.68);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    box-shadow: 
+      0 8px 24px -4px rgba(60, 50, 40, 0.04),
+      inset 0 1px 1px 0 rgba(255, 255, 255, 0.9);
+    border-radius: 24px;
+  }
+  .dark .milk-card,
+  :is(.dark .milk-card) {
+    background: rgba(15, 23, 42, 0.76);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 
+      0 12px 32px -4px rgba(0, 0, 0, 0.45),
+      inset 0 1px 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  .glass-pill {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 
+      0 4px 12px rgba(0, 0, 0, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 1);
+    border-radius: 9999px;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .dark .glass-pill,
+  :is(.dark .glass-pill) {
+    background: rgba(30, 41, 59, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+      0 4px 12px rgba(0, 0, 0, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-pill:hover {
+    background: rgba(255, 255, 255, 0.95);
+    transform: translateY(-1px);
+  }
+  .dark .glass-pill:hover,
+  :is(.dark .glass-pill:hover) {
+    background: rgba(51, 65, 85, 0.9);
+    transform: translateY(-1px);
+  }
+}
+
+/* Custom VisionOS Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(140, 120, 100, 0.25);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(140, 120, 100, 0.4);
+}
+
+.dark ::-webkit-scrollbar-thumb,
+:is(.dark ::-webkit-scrollbar-thumb) {
+  background: rgba(148, 163, 184, 0.25);
+}
+.dark ::-webkit-scrollbar-thumb:hover,
+:is(.dark ::-webkit-scrollbar-thumb:hover) {
+  background: rgba(148, 163, 184, 0.4);
+}

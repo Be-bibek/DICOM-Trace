@@ -1,6 +1,17 @@
 import React, { useState } from 'react';
-import { Upload, Send, ShieldCheck, Database, FileDigit, Cpu, KeyRound } from 'lucide-react';
+import { Upload, Send, ShieldCheck, Database, FileDigit, Cpu, Activity, LogOut } from 'lucide-react';
 import { generate_keypair, encrypt_payload, wrap_session_key } from '../../pkg/core_rs';
+
+import { PatientVitalsCard } from '../aura-src/components/PatientVitalsCard';
+import { MetricGaugesCard } from '../aura-src/components/MetricGaugesCard';
+import { AiClinicalReportCard } from '../aura-src/components/AiClinicalReportCard';
+import { ConsensusDagCard } from '../aura-src/components/ConsensusDagCard';
+import { 
+  PRIMARY_DICOM_SCAN, 
+  INITIAL_HARDWARE_TELEMETRY, 
+  INITIAL_DAG_NODES,
+  USER_PROFILES
+} from '../aura-src/data/clinicalData';
 
 interface PatientWorkspaceProps {
   currentPersona: any;
@@ -17,6 +28,12 @@ export const PatientWorkspace: React.FC<PatientWorkspaceProps> = ({ currentPerso
   const [proofGenerated, setProofGenerated] = useState(false);
   const [generatedZKProof, setGeneratedZKProof] = useState<any>(null);
   const [isSending, setIsSending] = useState(false);
+  
+  // AuraSec Demo Data
+  const activeScan = PRIMARY_DICOM_SCAN;
+  const telemetry = INITIAL_HARDWARE_TELEMETRY;
+  const dagNodes = INITIAL_DAG_NODES;
+  const dummyDoctor = USER_PROFILES[0];
 
   const handleLoadDemo = async (type: 'mr' | 'ct') => {
     setStatus(`Loading ${type.toUpperCase()}_small.dcm...`);
@@ -125,90 +142,121 @@ export const PatientWorkspace: React.FC<PatientWorkspaceProps> = ({ currentPerso
   };
 
   return (
-    <div className="flex-1 max-w-4xl mx-auto w-full p-4 sm:p-8 flex flex-col items-center justify-center">
-      <div className="w-full neumo-card p-6 sm:p-10 flex flex-col gap-8 relative overflow-hidden">
-        
-        {/* Header */}
-        <div className="flex justify-between items-start">
+    <div className={`relative min-h-screen w-full flex flex-col p-4 md:p-8 overflow-x-hidden font-sans text-slate-800 dark:text-slate-100 antialiased visionos-bg ${isDarkMode ? 'dark' : ''}`}>
+      
+      {/* Top Navbar Simulation */}
+      <div className="w-full max-w-[1580px] mx-auto flex items-center justify-between mb-6 glass-pill px-6 py-3">
+        <div className="flex items-center gap-3">
+          <Database className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
           <div>
-            <h1 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <Database className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
-              Patient Upload Portal
-            </h1>
-            <p className="text-sm font-medium text-slate-600 dark:text-slate-400 mt-1">
-              Securely transmit end-to-end encrypted medical imaging.
-            </p>
+            <h1 className="text-lg font-bold text-slate-900 dark:text-white leading-tight">Patient Portal</h1>
+            <p className="text-[10px] uppercase tracking-wider text-slate-500 font-bold">Secure ZK End-to-End Delivery</p>
           </div>
-          <button onClick={onLogout} className="px-4 py-1.5 rounded-full neumo-btn text-xs font-bold text-rose-600">
+        </div>
+        
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-full border border-slate-200 dark:border-slate-700">
+            <div className="w-6 h-6 rounded-full overflow-hidden bg-slate-300">
+              <img src={currentPersona.avatar} alt="Patient" className="w-full h-full object-cover" />
+            </div>
+            <span className="text-xs font-bold">{currentPersona.name}</span>
+          </div>
+          <button onClick={onLogout} className="flex items-center gap-1 px-4 py-2 rounded-full bg-rose-500/10 text-rose-600 hover:bg-rose-500/20 transition-colors text-xs font-bold">
+            <LogOut className="w-4 h-4" />
             Log Out
           </button>
         </div>
+      </div>
 
-        {/* Status Bar */}
-        <div className="neumo-inset bg-slate-50 dark:bg-[#0f111a] p-4 rounded-xl flex items-center gap-3">
-          <Activity className="w-5 h-5 text-indigo-500 animate-pulse" />
-          <p className="text-sm font-mono font-bold text-slate-700 dark:text-slate-300">
-            {status}
-          </p>
-        </div>
-
-        {/* Step 1: Upload */}
-        <div className="flex flex-col gap-3">
-          <h2 className="text-sm font-bold text-slate-800 dark:text-slate-200 flex items-center gap-2">
-            <span className="w-6 h-6 rounded-full neumo-inset flex items-center justify-center text-xs">1</span>
-            Select Imaging File
-          </h2>
-          <div className="flex flex-wrap gap-4">
-            <button onClick={() => handleLoadDemo('mr')} className="flex-1 min-w-[140px] p-4 rounded-2xl neumo-btn flex flex-col items-center gap-2 group transition-all active:scale-95">
-              <FileDigit className="w-8 h-8 text-slate-500 group-hover:text-indigo-500 transition-colors" />
-              <span className="text-sm font-bold">Load Demo MRI</span>
-            </button>
-            <button onClick={() => handleLoadDemo('ct')} className="flex-1 min-w-[140px] p-4 rounded-2xl neumo-btn flex flex-col items-center gap-2 group transition-all active:scale-95">
-              <FileDigit className="w-8 h-8 text-slate-500 group-hover:text-indigo-500 transition-colors" />
-              <span className="text-sm font-bold">Load Demo CT</span>
-            </button>
-            <label className="flex-1 min-w-[140px] p-4 rounded-2xl neumo-btn flex flex-col items-center gap-2 group transition-all active:scale-95 cursor-pointer">
-              <Upload className="w-8 h-8 text-slate-500 group-hover:text-indigo-500 transition-colors" />
-              <span className="text-sm font-bold">Upload Custom File</span>
-              <input type="file" className="hidden" onChange={handleFileUpload} />
-            </label>
-          </div>
-        </div>
-
-        {/* Step 2 & 3: ZK Proof & Transmit */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-2">
+      {/* Main 12-Column Grid */}
+      <div className="w-full max-w-[1580px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        
+        {/* COLUMN 1: Patient Vitals & Upload Portal */}
+        <section className="lg:col-span-4 flex flex-col gap-6">
+          <PatientVitalsCard patient={activeScan.patient} />
           
-          <div className="flex flex-col gap-3">
-            <h2 className="text-sm font-bold text-slate-800 dark:text-slate-200 flex items-center gap-2">
-              <span className="w-6 h-6 rounded-full neumo-inset flex items-center justify-center text-xs">2</span>
-              Generate Cryptography
-            </h2>
-            <button 
-              onClick={generateProof} 
-              disabled={!fileBytes || isGeneratingProof || proofGenerated}
-              className="w-full py-4 rounded-xl neumo-btn disabled:opacity-50 flex items-center justify-center gap-2 font-bold text-slate-800 dark:text-slate-200 transition-all"
-            >
-              <Cpu className={`w-5 h-5 ${isGeneratingProof ? 'animate-spin' : ''}`} />
-              {proofGenerated ? 'Proof Generated (804B)' : 'Generate ZK-SNARK Proof'}
-            </button>
-          </div>
+          {/* Custom Upload Card built with AuraSec styling */}
+          <div className="milk-card p-6 flex flex-col gap-6">
+            <div className="flex items-center justify-between">
+              <h2 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">
+                1. Select Imaging File
+              </h2>
+            </div>
+            
+            <div className="flex flex-col gap-3">
+              <button onClick={() => handleLoadDemo('mr')} className="w-full p-4 rounded-2xl bg-white/60 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-all flex items-center gap-4 group">
+                <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center text-indigo-600 dark:text-indigo-400 group-hover:scale-110 transition-transform">
+                  <FileDigit className="w-5 h-5" />
+                </div>
+                <div className="text-left">
+                  <p className="text-sm font-bold text-slate-900 dark:text-white">Load Demo MRI</p>
+                  <p className="text-xs text-slate-500">Knee/Joint structural scan</p>
+                </div>
+              </button>
+              
+              <label className="w-full p-4 rounded-2xl bg-white/60 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-all flex items-center gap-4 group cursor-pointer">
+                <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center text-indigo-600 dark:text-indigo-400 group-hover:scale-110 transition-transform">
+                  <Upload className="w-5 h-5" />
+                </div>
+                <div className="text-left">
+                  <p className="text-sm font-bold text-slate-900 dark:text-white">Upload Custom File</p>
+                  <p className="text-xs text-slate-500">DICOM, JPEG, or PNG</p>
+                </div>
+                <input type="file" className="hidden" onChange={handleFileUpload} />
+              </label>
+            </div>
 
-          <div className="flex flex-col gap-3">
-            <h2 className="text-sm font-bold text-slate-800 dark:text-slate-200 flex items-center gap-2">
-              <span className="w-6 h-6 rounded-full neumo-inset flex items-center justify-center text-xs">3</span>
-              End-to-End Delivery
-            </h2>
-            <button 
-              onClick={handleTransmit}
-              disabled={!fileBytes || isSending}
-              className="w-full py-4 rounded-xl neumo-btn disabled:opacity-50 flex items-center justify-center gap-2 font-bold text-emerald-700 dark:text-emerald-400 transition-all"
-            >
-              <ShieldCheck className="w-5 h-5" />
-              {isSending ? 'Encrypting & Transmitting...' : 'Encrypt & Transmit E2E'}
-            </button>
-          </div>
+            <div className="w-full bg-slate-100 dark:bg-slate-800/80 rounded-xl p-3 flex items-center gap-3 border border-slate-200 dark:border-slate-700">
+              <Activity className="w-4 h-4 text-indigo-500 animate-pulse shrink-0" />
+              <p className="text-[11px] font-mono text-slate-700 dark:text-slate-300 truncate">
+                {status}
+              </p>
+            </div>
 
-        </div>
+            <div className="flex flex-col gap-3 pt-2 border-t border-slate-200 dark:border-slate-700">
+              <button 
+                onClick={generateProof} 
+                disabled={!fileBytes || isGeneratingProof || proofGenerated}
+                className="w-full py-3 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 disabled:opacity-50 flex items-center justify-center gap-2 font-bold text-sm transition-all hover:shadow-lg"
+              >
+                <Cpu className={`w-4 h-4 ${isGeneratingProof ? 'animate-spin' : ''}`} />
+                {proofGenerated ? 'ZK Proof Ready (804B)' : '2. Generate ZK-SNARK'}
+              </button>
+
+              <button 
+                onClick={handleTransmit}
+                disabled={!fileBytes || isSending || !proofGenerated}
+                className="w-full py-3 rounded-xl bg-emerald-600 text-white disabled:opacity-50 flex items-center justify-center gap-2 font-bold text-sm transition-all hover:shadow-lg hover:bg-emerald-500"
+              >
+                <ShieldCheck className="w-4 h-4" />
+                {isSending ? 'Transmitting...' : '3. Encrypt & Transmit E2E'}
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* COLUMN 2: Diagnostic Gauges & AI Assessment */}
+        <section className="lg:col-span-4 flex flex-col gap-6">
+          <MetricGaugesCard
+            localization={activeScan.localization}
+            telemetry={telemetry}
+            isBreached={false}
+          />
+          <AiClinicalReportCard
+            scan={activeScan}
+            isBreached={false}
+          />
+        </section>
+
+        {/* COLUMN 3: Consensus DAG */}
+        <section className="lg:col-span-4 flex flex-col gap-6">
+          <ConsensusDagCard
+            nodes={dagNodes}
+            currentUser={dummyDoctor}
+            onSignNode={() => {}}
+            isBreached={false}
+          />
+        </section>
 
       </div>
     </div>
