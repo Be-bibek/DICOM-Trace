@@ -15,7 +15,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
   onChangeTheme
 }) => {
   return (
-    <div id="settings-view" className="p-5 milk-card space-y-4 max-w-2xl mx-auto border border-white/80 dark:border-slate-800">
+    <div id="settings-view" className="p-5 neumo-card space-y-4 max-w-2xl mx-auto border border-white/80 dark:border-slate-800">
       <div className="flex items-center gap-3 pb-3 border-b border-slate-200/60 dark:border-slate-800">
         <div className="w-10 h-10 rounded-2xl bg-amber-500/15 dark:bg-amber-500/20 border border-amber-400/40 dark:border-amber-400/30 text-amber-700 dark:text-amber-400 flex items-center justify-center">
           <Sliders className="w-5 h-5" />
@@ -28,7 +28,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
 
       <div className="space-y-3 text-xs">
         {/* Appearance & Color Mode Switcher */}
-        <div className="p-4 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-white/95 dark:border-slate-700/80 shadow-xs">
+        <div className="p-4 rounded-2xl neumo-inset border-none">
           <label className="font-bold text-slate-800 dark:text-white flex items-center gap-2 mb-2">
             <Monitor className="w-4 h-4 text-amber-500" />
             <span>Display Theme (Light & Dark Mode)</span>
@@ -71,7 +71,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
         </div>
 
         {/* Environmental Lighting Preset */}
-        <div className="p-4 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-white/95 dark:border-slate-700/80 shadow-xs">
+        <div className="p-4 rounded-2xl neumo-inset border-none">
           <label className="font-bold text-slate-800 dark:text-white flex items-center gap-2 mb-2">
             <Sun className="w-4 h-4 text-amber-500" />
             <span>Spatial Room Atmosphere Preset</span>
@@ -99,7 +99,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
         </div>
 
         {/* Spatial Glass Refraction Specs */}
-        <div className="p-4 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-white/95 dark:border-slate-700/80 shadow-xs space-y-2">
+        <div className="p-4 rounded-2xl neumo-inset border-none space-y-2">
           <label className="font-bold text-slate-800 dark:text-white flex items-center gap-2">
             <Sparkles className="w-4 h-4 text-emerald-500" />
             <span>VisionOS Spatial Materials Engine</span>

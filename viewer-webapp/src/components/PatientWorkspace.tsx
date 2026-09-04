@@ -13,13 +13,17 @@ import { TopNavCapsule } from '../aura-src/components/TopNavCapsule';
 import { OverviewView } from '../aura-src/components/OverviewView';
 import { ClinicalReportsView } from '../aura-src/components/ClinicalReportsView';
 import { StudiesArchiveView } from '../aura-src/components/StudiesArchiveView';
+import { ZkLedgerView } from '../aura-src/components/ZkLedgerView';
+import { VaultView } from '../aura-src/components/VaultView';
+import { SettingsView } from '../aura-src/components/SettingsView';
 
 import { 
   PRIMARY_DICOM_SCAN, 
   INITIAL_HARDWARE_TELEMETRY, 
   INITIAL_DAG_NODES,
   USER_PROFILES,
-  ALTERNATIVE_SCANS
+  ALTERNATIVE_SCANS,
+  INITIAL_ZK_METADATA
 } from '../aura-src/data/clinicalData';
 
 interface PatientWorkspaceProps {
@@ -292,6 +296,35 @@ export const PatientWorkspace: React.FC<PatientWorkspaceProps> = ({ currentPerso
               onSignNode={() => {}}
               isBreached={isBreached}
             />
+          </div>
+        );
+
+      case 'zkledger':
+        return (
+          <div className="max-w-4xl mx-auto">
+            <ZkLedgerView 
+              scan={currentScan}
+              zkMetadata={INITIAL_ZK_METADATA}
+              isBreached={isBreached}
+            />
+          </div>
+        );
+
+      case 'vault':
+        return (
+          <div className="max-w-4xl mx-auto">
+            <VaultView
+              users={USER_PROFILES}
+              zkMetadata={INITIAL_ZK_METADATA}
+              isBreached={isBreached}
+            />
+          </div>
+        );
+
+      case 'settings':
+        return (
+          <div className="max-w-4xl mx-auto">
+            <SettingsView />
           </div>
         );
 

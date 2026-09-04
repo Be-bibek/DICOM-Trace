@@ -20,7 +20,7 @@ interface VaultViewProps {
 
 export const VaultView: React.FC<VaultViewProps> = ({ users, zkMetadata, isBreached }) => {
   return (
-    <div id="vault-view" className="p-5 milk-card space-y-4">
+    <div id="vault-view" className="p-5 neumo-card space-y-4">
       {/* Header */}
       <div className="flex items-center justify-between pb-3 border-b border-slate-200/60 dark:border-slate-800">
         <div className="flex items-center gap-3">
@@ -45,7 +45,7 @@ export const VaultView: React.FC<VaultViewProps> = ({ users, zkMetadata, isBreac
         </h4>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {users.map((user) => (
-            <div key={user.id} className="p-3.5 rounded-2xl bg-white/80 dark:bg-slate-800/80 border border-white/95 dark:border-slate-700/80 shadow-xs flex items-center gap-3">
+            <div key={user.id} className="p-3.5 rounded-2xl neumo-inset border-none flex items-center gap-3">
               <img
                 src={user.avatar}
                 alt={user.name}
@@ -66,7 +66,7 @@ export const VaultView: React.FC<VaultViewProps> = ({ users, zkMetadata, isBreac
       </div>
 
       {/* Cryptographic Zero-Knowledge Circuit Verification */}
-      <div className="p-4 rounded-2xl bg-slate-900 text-white border border-slate-800 space-y-2">
+      <div className="p-4 rounded-2xl neumo-inset border-none space-y-2">
         <div className="flex items-center justify-between text-xs font-mono">
           <span className="text-amber-400 font-bold flex items-center gap-1.5">
             <Terminal className="w-3.5 h-3.5" />
@@ -75,19 +75,19 @@ export const VaultView: React.FC<VaultViewProps> = ({ users, zkMetadata, isBreac
           <span className="text-slate-400">119.5k Constraints</span>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs pt-1">
-          <div className="p-2 rounded-xl bg-slate-800/80 border border-slate-700">
+          <div className="p-2 rounded-xl neumo-inset border-none bg-transparent">
             <p className="text-[10px] text-slate-400">PHI Disclosure</p>
             <p className="text-emerald-400 font-mono font-bold">0.00 bits</p>
           </div>
-          <div className="p-2 rounded-xl bg-slate-800/80 border border-slate-700">
+          <div className="p-2 rounded-xl neumo-inset border-none bg-transparent">
             <p className="text-[10px] text-slate-400">Pairing Latency</p>
             <p className="text-white font-mono font-bold">{zkMetadata.verificationTimeMs} ms</p>
           </div>
-          <div className="p-2 rounded-xl bg-slate-800/80 border border-slate-700">
+          <div className="p-2 rounded-xl neumo-inset border-none bg-transparent">
             <p className="text-[10px] text-slate-400">Curve Security</p>
             <p className="text-white font-mono font-bold">128-bit Post-Quantum</p>
           </div>
-          <div className="p-2 rounded-xl bg-slate-800/80 border border-slate-700">
+          <div className="p-2 rounded-xl neumo-inset border-none bg-transparent">
             <p className="text-[10px] text-slate-400">Enclave Status</p>
             <p className="text-emerald-400 font-mono font-bold">Hardware Locked</p>
           </div>
